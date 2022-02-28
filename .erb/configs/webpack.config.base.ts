@@ -8,6 +8,8 @@ import { dependencies as externals } from '../../release/app/package.json';
 import { VueLoaderPlugin } from 'vue-loader';
 import path from 'path';
 
+const nodeOptions = {};
+
 const configuration: webpack.Configuration = {
   externals: [...Object.keys(externals || {})],
 
@@ -53,6 +55,21 @@ const configuration: webpack.Configuration = {
       assets: path.resolve(__dirname, '../../assets'),
     },
     modules: [webpackPaths.srcPath, 'node_modules'],
+    fallback: {
+      fs: false,
+      tls: false,
+      net: false,
+      path: false,
+      zlib: false,
+      http: false,
+      https: false,
+      stream: false,
+      crypto: false,
+      assert: false,
+      url: false,
+      querystring: false,
+      'querystring-es3': false,
+    },
   },
 
   plugins: [

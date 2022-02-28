@@ -1,0 +1,19 @@
+[
+  {
+    "questions": [
+      "Where did you go to school?"
+    ],
+    "answers": [
+      "I studied medicine at the Alan Turing Virtual Institute of Medicine"
+    ]
+  },
+  {
+    "questions": [
+      "I have a tummy ache",
+      "I feel nauseous"
+    ],
+    "answers": [
+      "You have the stomach flu!"
+    ]
+  }
+]

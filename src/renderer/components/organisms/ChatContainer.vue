@@ -1,7 +1,7 @@
 <template>
-    <div class="d-flex flex-column vh-100 vw-100" style="background-color: rgb(240,240,240)">
-        <ChatHeader name="Doctor Phil (MD)"></ChatHeader>
-        <ChatBox class="flex-grow-1"></ChatBox>
+    <div class="chat-container d-flex flex-column">
+        <ChatHeader v-if="$chatService.state.recipient" :name="$chatService.state.recipient.name"></ChatHeader>
+        <ChatBox class="flex-grow-1 overflow-auto"></ChatBox>
         <ChatBar></ChatBar>
     </div>
 </template>
@@ -16,6 +16,13 @@ export default {
         ChatBar,
         ChatBox,
         ChatHeader
-    }
+    },
 }
 </script>
+
+<style scoped>
+.chat-container {
+    background-color: rgb(240,240,240);
+    overflow: none;
+}
+</style>

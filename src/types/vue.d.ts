@@ -1,4 +1,4 @@
-import { ChatState } from 'renderer/store/chat';
+import { ChatState } from 'renderer/store/modules/chat';
 import * as Vue from 'vue';
 import { Store } from 'vuex';
 import { ChatService } from '../renderer/services/chat-service';

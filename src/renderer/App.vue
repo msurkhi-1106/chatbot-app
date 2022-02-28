@@ -1,5 +1,5 @@
 <template>
-    <chat-container></chat-container>
+    <chat-container class="chat-container"></chat-container>
 </template>
 
 <script lang="ts">
@@ -11,3 +11,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.chat-container {
+    width: 100vw;
+    height: 100vh;
+}
+</style>
