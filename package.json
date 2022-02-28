@@ -157,6 +157,7 @@
     "electron-updater": "^4.6.5",
     "history": "^5.2.0",
     "jquery": "^3.6.0",
+    "node-nlp": "^4.22.18",
     "popper.js": "^1.16.1",
     "vue": "^3.2.31",
     "vuex": "^4.0.2"
