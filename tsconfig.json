@@ -5,7 +5,6 @@
     "lib": ["dom", "esnext"],
     "declaration": true,
     "declarationMap": true,
-    "jsx": "react-jsx",
     "strict": true,
     "pretty": true,
     "sourceMap": true,
@@ -18,10 +17,10 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "allowJs": true,
     "outDir": "release/app/dist",
     "paths": {
-      "~/*": ["src/renderer/*"]
+      "~/*": ["src/renderer/*"],
+      "assets/*": ["assets/*"]
     }
   },
   "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]
