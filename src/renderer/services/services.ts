@@ -11,5 +11,6 @@ export const services: Vue.Plugin = (app: Vue.App, ...options: any[]) => {
 
   for (const key in services) {
     inject(key, new (services as any)[key](app));
+    console.log(app);
   }
 };

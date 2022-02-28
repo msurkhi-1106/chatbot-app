@@ -1,5 +1,8 @@
 module.exports = {
-  extends: 'erb',
+  extends: [
+    'erb',
+    "plugin:prettier/recommended",
+  ],
   rules: {},
   parserOptions: {
     ecmaVersion: 2020,
@@ -21,4 +24,8 @@ module.exports = {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
   },
+  plugins: ["prettier"],
+  rules: {
+    "prettier/prettier": "error"
+  }
 };
