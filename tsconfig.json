@@ -21,7 +21,11 @@
     "paths": {
       "~/*": ["src/renderer/*"],
       "assets/*": ["assets/*"]
-    }
+    },
+    "typeRoots": [
+      "src/types"
+    ],
+    "types": ["node"]
   },
   "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]
 }

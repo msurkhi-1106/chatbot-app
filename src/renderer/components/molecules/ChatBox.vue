@@ -1,6 +1,6 @@
 <template>
     <div class="p-2">
-        <chat-message v-for="(message, index) in messages" :message="message" :key="index"></chat-message>
+        <chat-message v-for="(message, index) in $chatService.messages" :message="message" :key="index"></chat-message>
     </div>
 </template>
 
@@ -10,7 +10,7 @@ import { mapGetters } from 'vuex'
 
 export default {
     mounted() {
-        console.log(this.messages)
+        
     },
     data() {
         return {}

@@ -6,19 +6,16 @@
 </template>
 
 <script lang="ts">
-import Message from 'renderer/models/message'
-import { mapMutations } from 'vuex'
 export default {
     data() {
         return {
-            messageBody: ""
+            messageBody: "",
         }
     },
     methods: {
-        ...mapMutations(['addMessage']),
         sendMessage() {
             if(!this.messageBody) return;
-            this.addMessage(new Message(new Date(), "Jordan", this.messageBody))
+            this.$chatService.sendMessage(this.messageBody)
             this.messageBody = ""
         }
     },
