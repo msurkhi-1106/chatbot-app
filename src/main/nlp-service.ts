@@ -1,4 +1,6 @@
 const { NlpManager } = require('node-nlp');
+import fs from 'fs'
+import { v4 as uuidv4 } from 'uuid'
 
 export class NlpService {
   manager = new NlpManager({ languages: ['en'] });
@@ -8,22 +10,28 @@ export class NlpService {
   }
 
   async train() {
-    this.manager.addDocument(
-      'en',
-      'Where did you go to school?',
-      'question.school'
-    );
-    this.manager.addDocument('en', 'I have a tummy ache', 'illness.flu');
-    this.manager.addDocument('en', 'I feel nauseous', 'illness.flu');
+    const file = fs.readFileSync("config/dataset.json")
+    const questions = JSON.parse(file.toString())
 
-    this.manager.addAnswer('en', 'illness.flu', 'You have the stomach flu!');
-    this.manager.addAnswer(
-      'en',
-      'question.school',
-      'I studied medicine at the Alan Turing Virtual Institute of Medicine'
-    );
+    questions.forEach((category: {questions: string | string[], answers: string | string[]}) => {
+        let uuid = uuidv4()
+        
+        if(category.questions instanceof String) category.questions = [questions]
+        if(category.answers instanceof String) category.answers = [questions];
+
+        (category.questions as string[]).forEach((question: string) => {
+            this.manager.addDocument(
+                'en',
+                question,
+                uuid
+              );
+              console.log(question)
+        });
+        (category.answers as string[]).forEach((answer: string) => {
+            this.manager.addAnswer('en', uuid, answer);
+        })
+    })
 
     await this.manager.train();
-    //this.manager.save();
   }
 }
