@@ -16,6 +16,7 @@ export default {
         sendMessage() {
             if(!this.messageBody) return;
             this.$chatService.sendMessage(this.messageBody)
+            this.$emit("messageSent")
             this.messageBody = ""
         }
     },
@@ -23,7 +24,10 @@ export default {
         sendDisabled(): boolean {
             return this.messageBody == ""
         }
-    }
+    },
+    emits: [
+        'messageSent'
+    ]
 }
 </script>
 
