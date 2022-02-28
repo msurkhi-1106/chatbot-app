@@ -1,13 +1,14 @@
 <template>
     <span class="py-1">
-        {{ user }} is typing...
+        {{ user.name }} is typing...
     </span>
 </template>
 
 <script lang="ts">
+import { User } from 'renderer/models/user'
 export default {
     props: {
-        user: String
+        user: User
     }
 }
 </script>

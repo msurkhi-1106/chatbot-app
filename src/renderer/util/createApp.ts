@@ -1,5 +1,5 @@
 import * as Vue from 'vue';
-import { createStore } from './createStore';
+import { createStore } from '../store/createStore';
 import { services } from '../services/services';
 import { injectContext } from './inject-context';
 

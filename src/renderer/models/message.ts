@@ -1,11 +1,13 @@
+import { User } from './user';
+
 export default class Message {
   date: Date;
-  name: string;
+  sender: User;
   message: string;
 
-  constructor(date: Date, name: string, message: string) {
+  constructor(date: Date, sender: User, message: string) {
     this.date = date;
-    this.name = name;
+    this.sender = sender;
     this.message = message;
   }
 }

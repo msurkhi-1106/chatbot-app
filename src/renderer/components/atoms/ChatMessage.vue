@@ -4,7 +4,7 @@
             [{{ messageTime }}]
         </span>
         <span class="message-sender">
-            {{ message.name }}: 
+            {{ message.sender.name }}: 
         </span>
         <span>
             {{ message.message }}

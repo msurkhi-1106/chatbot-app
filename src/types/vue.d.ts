@@ -1,3 +1,4 @@
+import { ChatState } from 'renderer/store/chat';
 import * as Vue from 'vue';
 import { Store } from 'vuex';
 import { ChatService } from '../renderer/services/chat-service';
@@ -9,6 +10,6 @@ declare module '@vue/runtime-core' {
 
   interface App {
     $chatService: ChatService;
-    $store: Store<any>;
+    $store: Store<ChatState>;
   }
 }
