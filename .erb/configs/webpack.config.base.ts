@@ -5,6 +5,7 @@
 import webpack from 'webpack';
 import webpackPaths from './webpack.paths';
 import { dependencies as externals } from '../../release/app/package.json';
+import { VueLoaderPlugin } from 'vue-loader';
 
 const configuration: webpack.Configuration = {
   externals: [...Object.keys(externals || {})],
@@ -13,6 +14,11 @@ const configuration: webpack.Configuration = {
 
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        loader: "vue-loader",
+      },
       {
         test: /\.[jt]sx?$/,
         exclude: /node_modules/,
@@ -39,7 +45,10 @@ const configuration: webpack.Configuration = {
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.vue', 'tsx'],
+    alias: {
+      vue: '@vue/runtime-dom',
+    },
     modules: [webpackPaths.srcPath, 'node_modules'],
   },
 
@@ -47,6 +56,7 @@ const configuration: webpack.Configuration = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
     }),
+    new VueLoaderPlugin(),
   ],
 };
 
