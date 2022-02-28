@@ -6,6 +6,7 @@ import webpack from 'webpack';
 import webpackPaths from './webpack.paths';
 import { dependencies as externals } from '../../release/app/package.json';
 import { VueLoaderPlugin } from 'vue-loader';
+import path from 'path';
 
 const configuration: webpack.Configuration = {
   externals: [...Object.keys(externals || {})],
@@ -48,6 +49,7 @@ const configuration: webpack.Configuration = {
     extensions: ['.js', '.jsx', '.json', '.ts', '.vue', 'tsx'],
     alias: {
       vue: '@vue/runtime-dom',
+      '~': path.resolve(__dirname, '../../src/renderer')
     },
     modules: [webpackPaths.srcPath, 'node_modules'],
   },

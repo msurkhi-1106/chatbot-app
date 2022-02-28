@@ -1,19 +1,13 @@
 <template>
-    <div>
-        hello
-        <chat-bar></chat-bar>
-    </div>
+    <chat-container></chat-container>
 </template>
 
 <script lang="ts">
-import ChatBar from "./components/ChatBar.vue"
+import ChatContainer from "./components/organisms/ChatContainer.vue"
 
 export default {
-    created() {
-        console.log("hey")
-    },
     components: {
-        ChatBar
+        ChatContainer
     }
 }
 </script>
