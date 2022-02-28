@@ -18,7 +18,7 @@ const configuration: webpack.Configuration = {
       {
         test: /\.vue$/,
         exclude: /node_modules/,
-        loader: "vue-loader",
+        loader: 'vue-loader',
       },
       {
         test: /\.[jt]sx?$/,
@@ -49,7 +49,8 @@ const configuration: webpack.Configuration = {
     extensions: ['.js', '.jsx', '.json', '.ts', '.vue', 'tsx'],
     alias: {
       vue: '@vue/runtime-dom',
-      '~': path.resolve(__dirname, '../../src/renderer')
+      '~': path.resolve(__dirname, '../../src/renderer'),
+      assets: path.resolve(__dirname, '../../assets'),
     },
     modules: [webpackPaths.srcPath, 'node_modules'],
   },

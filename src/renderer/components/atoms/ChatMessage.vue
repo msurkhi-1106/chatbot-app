@@ -1,15 +1,15 @@
 <template>
-    <p>
+    <div class="py-1">
         <span class="pe-2 message-time">
             [{{ messageTime }}]
         </span>
         <span class="message-sender">
-            {{ message.name }}: 
+            {{ message.sender.name }}: 
         </span>
         <span>
             {{ message.message }}
         </span>
-    </p>
+    </div>
 </template>
 
 <script>
@@ -37,8 +37,5 @@ export default {
 </script>
 
 <style scoped>
-.message-time {
-    display: inline-block;
-    width: 100px;
-}
+
 </style>

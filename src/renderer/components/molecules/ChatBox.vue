@@ -1,16 +1,19 @@
 <template>
     <div class="p-2">
-        <chat-message v-for="(message, index) in messages" :message="message" :key="index"></chat-message>
+        <ChatMessage v-for="(message, index) in $chatService.messages" :message="message" :key="index"></ChatMessage>
+        <TypingMessage v-if="$chatService.state.recipient.typing" :user="$chatService.state.recipient"></TypingMessage>
     </div>
 </template>
 
 <script lang="ts">
 import ChatMessage from "~/components/atoms/ChatMessage.vue"
+import TypingMessage from "~/components/atoms/TypingMessage.vue"
+
 import { mapGetters } from 'vuex'
 
 export default {
     mounted() {
-        console.log(this.messages)
+        
     },
     data() {
         return {}
@@ -21,7 +24,8 @@ export default {
         })
     },
     components: {
-        ChatMessage
+        ChatMessage,
+        TypingMessage
     }
 }
 </script>
