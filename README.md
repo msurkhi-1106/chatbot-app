@@ -38,24 +38,35 @@ The chatbot should launch.
 
 As their are many classes to this program I'll only conver the ones I believe are most relevant to grading:
 
-assets:
-Self explanatory. This folder contains and images, icons, etc. that the chatbot UI uses.
+Assets Folder:
+Self-explanatory. Contains any image, icons, and other assets the UI uses.
 
-config:
-Contains only dataset.json. Question keywords and chatbot answers can be added and modified here.
+Config Folder:
+dataset.json:
+A file containing a list of question, and answer arrys. Question arrays contain keywords and/or keyphrases the bot interprets
+and answer arrays contain the bots answer.
 
-src/main:
-Contains most of the classes that allow the chatbot to run without a seperate webserver. The only exception to this is nlp-service. It's responsible
-for reading dataset.json and modifying the chatbots output.
+Source Folder:
+main/main.ts, main/menu.ts, and main/utils.ts:
+These functions build the window where the chatbot is interacted with.
 
-src/renderer/models:
-Contains classes with contructors for the user, service, and message objects.
+nlp-service.ts:
+This class reads the arrays within the dataset.json file and adds them to the chatbots interpretable questions and associated outputs.
 
-src/renderer/services:
-chat-service.ts contains functions for reading and writing output messages.
+renderer/compnents/...
+All files in this folder build the individual compnents of the chat functionality such as the chat bar and chat box.
 
-src/renderer/store/modules:
-Contains only chat.ts. Responsible for creating the recipient and user.
+renderer/models/...
+Constructor classes for messages, the app, and users.
+
+renderer/services/chat-service.ts
+Class contains functions responsible for sending chatbot answers and recieveing user questions.
+
+renderer/store/createStore.ts
+Class that intializes the chat module.
+
+renderer/store/modules/chat.ts
+Class responsible initializing users and messages.
 
 # Boilerplate Info
 
