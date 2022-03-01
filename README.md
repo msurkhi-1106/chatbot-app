@@ -34,6 +34,45 @@ npm run start
 
 The chatbot should launch.
 
+## Simplified Project Structure
+. &nbsp;<br />
+├── ...&nbsp;<br />
+├── config &nbsp;<br />
+│ &nbsp; └── dataset.json &nbsp; -> Stores our dataset for NLP<br />
+├── Project Report.docx &nbsp; -> Our project report document<br />
+├── src &nbsp;<br />
+│ &nbsp; ├── main &nbsp;<br />
+│ &nbsp; │ &nbsp; ├── nlp-service.ts &nbsp;&nbsp;&nbsp;<- Interfaces with Node NLP module and trains from dataset &nbsp;<br />
+│ &nbsp; │ &nbsp; ├── main.ts &nbsp;&nbsp;<- Electron entry point, also includes IPC module for communicating frontend<br />
+│ &nbsp; ├── renderer &nbsp;<br />
+│ &nbsp; │ &nbsp; ├── App.vue &nbsp;&nbsp;<- Vue entry point <br />
+│ &nbsp; │ &nbsp; ├── components &nbsp;&nbsp;<- Component structure following atomic design principles<br />
+│ &nbsp; │ &nbsp; │ &nbsp; ├── atoms &nbsp;&nbsp;<- Smallest component unit in atomic design<br />
+│ &nbsp; │ &nbsp; │ &nbsp; │ &nbsp; ├── ChatMessage.vue &nbsp;&nbsp;<- Vue component for chat messages<br />
+│ &nbsp; │ &nbsp; │ &nbsp; │ &nbsp; └── TypingMessage.vue &nbsp;&nbsp;<- Vue component for "user is typing..."<br />
+│ &nbsp; │ &nbsp; │ &nbsp; ├── molecules &nbsp;&nbsp;<- Medium sized component unit<br />
+│ &nbsp; │ &nbsp; │ &nbsp; │ &nbsp; ├── ChatBar.vue &nbsp;&nbsp;<- Vue component for chat bar<br />
+│ &nbsp; │ &nbsp; │ &nbsp; │ &nbsp; ├── ChatBox.vue &nbsp;&nbsp;<- Vue component for chat box (where messages go)<br />
+│ &nbsp; │ &nbsp; │ &nbsp; │ &nbsp; └── ChatHeader.vue &nbsp;&nbsp;<- Chat header component (recipient picture+name)<br />
+│ &nbsp; │ &nbsp; │ &nbsp; └── organisms &nbsp;&nbsp;<- Largest component unit (full functioning features)<br />
+│ &nbsp; │ &nbsp; │ &nbsp; &nbsp; &nbsp; └── ChatContainer.vue &nbsp;&nbsp;<- Chat container component (full chat feature)<br />
+│ &nbsp; │ &nbsp; ├── index.ejs &nbsp;&nbsp;<- Main HTML template where Vue is injected<br />
+│ &nbsp; │ &nbsp; ├── index.ts &nbsp;&nbsp;<- Webpack entry point<br />
+│ &nbsp; │ &nbsp; ├── models &nbsp;&nbsp;<- Stores reusable object models (i.e. classes/data structures)<br />
+│ &nbsp; │ &nbsp; │ &nbsp; ├── message.ts &nbsp;&nbsp;<- Class to identify a sent message<br />
+│ &nbsp; │ &nbsp; │ &nbsp; ├── service.ts &nbsp;&nbsp;<- Abstract class representing stateful services injected into Vue<br />
+│ &nbsp; │ &nbsp; │ &nbsp; └── user.ts &nbsp;&nbsp;<-Class to identify users in chat<br />
+│ &nbsp; │ &nbsp; ├── services &nbsp;<br />
+│ &nbsp; │ &nbsp; │ &nbsp; ├── chat-service.ts &nbsp;&nbsp;<- Service to manipulate chat state<br />
+│ &nbsp; │ &nbsp; │ &nbsp; └── services.ts &nbsp;&nbsp;<- Services initializer plugin which is installed into Vue (inits all services)<br />
+│ &nbsp; │ &nbsp; ├── store &nbsp;&nbsp;<- Configuration for Vuex store (state management) <br />
+│ &nbsp; │ &nbsp; │ &nbsp; ├── createStore.ts &nbsp;&nbsp;<- Initializer for store (object factory)<br />
+│ &nbsp; │ &nbsp; │ &nbsp; └── modules &nbsp;&nbsp;<- Stores all modules involved in store<br />
+│ &nbsp; │ &nbsp; │ &nbsp; &nbsp; &nbsp; └── chat.ts &nbsp;&nbsp;<- Chat module for store (manages chat state for chat service)<br />
+│ &nbsp; │ &nbsp; └── util &nbsp;&nbsp;<- Misc utilities<br />
+│ &nbsp; │ &nbsp; &nbsp; &nbsp; ├── createApp.ts &nbsp;&nbsp;<- Factory to create Vue app with desired configuration<br />
+│ &nbsp; │ &nbsp; &nbsp; &nbsp; └── inject-context.ts &nbsp;&nbsp;<- Helper function for injecting key into Vue/components (for DI)<br />
+│ &nbsp; └── ... &nbsp;<br />
 ## Class Organization
 
 As their are many classes to this program I'll only conver the ones I believe are most relevant to grading:
