@@ -13,6 +13,6 @@ export const ChatModule: Module<ChatState, any> = {
   state: {
     messages: [],
     recipient: new User('Doctor Phil (MD)', doctorPhoto),
-    self: new User('Jordan'),
+    self: new User('You'),
   },
 };
