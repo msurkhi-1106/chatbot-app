@@ -17,11 +17,45 @@ The purpose of the app is to make a simple diagnostic tool, so that the user can
 
 ## How to Compile and Run
 
-Jordan R add this
+Before running the project Node.js and npm will need to be installed
+
+Open the project in your IDE of choice.
+Open terminal in the root of the project and run this command:
+
+```bash
+npm install
+```
+
+Wait until the installation finishes then input the command:
+
+```bash
+npm run start
+```
+
+The chatbot should launch.
 
 ## Class Organization
 
-Jordan R add this one too
+As their are many classes to this program I'll only conver the ones I believe are most relevant to grading:
+
+assets:
+Self explanatory. This folder contains and images, icons, etc. that the chatbot UI uses.
+
+config:
+Contains only dataset.json. Question keywords and chatbot answers can be added and modified here.
+
+src/main:
+Contains most of the classes that allow the chatbot to run without a seperate webserver. The only exception to this is nlp-service. It's responsible
+for reading dataset.json and modifying the chatbots output.
+
+src/renderer/models:
+Contains classes with contructors for the user, service, and message objects.
+
+src/renderer/services:
+chat-service.ts contains functions for reading and writing output messages.
+
+src/renderer/store/modules:
+Contains only chat.ts. Responsible for creating the recipient and user.
 
 # Boilerplate Info
 
