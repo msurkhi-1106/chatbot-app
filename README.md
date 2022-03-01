@@ -1,3 +1,30 @@
+# 310 Project: Chatbot App
+
+## Team 31 Members:
+
+Mohammad Al-surkhi
+Jordan Colledge
+Gabriel McLachlan
+Jordan Ribbink
+Nathan Wright
+
+## Project Description and Purpose
+
+Description copied and pasted from the Project Plan:
+The project consists of a chatbot built in Electron; the chatbot comes with a generic visual interface to ensure simplicity of use and understanding. (Apparently this is extra credit for the next assignment, which we weren’t aware of until it had been implemented.) The chatbot takes on the role of a doctor, who can be asked questions about different symptoms and describe the likely illness and remedy. Thus, the user takes on the role of a patient.
+
+The purpose of the app is to make a simple diagnostic tool, so that the user can diagnose their possible illnesses without having to leave their home. A doctor will necessarily be a better diagnostic tool than this app, but it's meant to be functional just the same.
+
+## How to Compile and Run
+
+Jordan R add this
+
+## Class Organization
+
+Jordan R add this one too
+
+# Boilerplate Info
+
 <img src=".erb/img/erb-banner.svg" width="100%" />
 
 <br>
