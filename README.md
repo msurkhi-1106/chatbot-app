@@ -53,20 +53,20 @@ These functions build the window where the chatbot is interacted with.
 nlp-service.ts:
 This class reads the arrays within the dataset.json file and adds them to the chatbots interpretable questions and associated outputs.
 
-renderer/compnents/...
-All files in this folder build the individual compnents of the chat functionality such as the chat bar and chat box.
+renderer/components/…:
+All files in this folder build the individual components of the chat functionality such as the chat bar and chat box.
 
-renderer/models/...
+renderer/models/…:
 Constructor classes for messages, the app, and users.
 
-renderer/services/chat-service.ts
-Class contains functions responsible for sending chatbot answers and recieveing user questions.
+renderer/services/chat-service.ts:
+Class contains functions responsible for sending chatbot answers and receiving user questions.
 
-renderer/store/createStore.ts
-Class that intializes the chat module.
+renderer/store/createStore.ts:
+Class that initializes the chat module.
 
-renderer/store/modules/chat.ts
-Class responsible initializing users and messages.
+renderer/store/modules/chat.ts:
+Class responsible for initializing users and messages.
 
 # Boilerplate Info
 
