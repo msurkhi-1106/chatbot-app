@@ -1,25 +1,24 @@
 import fs, { ReadStream, WriteStream } from 'fs'
-import { spawn, fork } from 'child_process'
+import { spawn } from 'child_process'
 import { v4 as uuidv4 } from 'uuid'
-import { resolveBotPath } from '../util'
 import commandExists from 'command-exists'
 import os from 'os'
 import path from 'path'
-import './ipc-cleanup'
 import { IPCMessage, IPCMessageType } from './ipc-message'
+
+import './ipc-cleanup'
 
 export class BotIPC {
     fifoWs?: WriteStream
     fifoRs?: ReadStream
     callbackTable: {[id: string]: (response: IPCMessage) => void | boolean} = {}
+    agentPath: string
 
-    constructor() {}
+    constructor(agentPath: string) {
+        this.agentPath = agentPath
+    }
 
     async spawnPython(path_r: string, path_w: string) {
-        console.log(path_r)
-        console.log(path_w)
-        console.log(resolveBotPath('bot.py'))
-
         let pythonPath
         if(await commandExists('python3')) {
             pythonPath = 'python3'
@@ -30,7 +29,7 @@ export class BotIPC {
             throw new Error('Python was not found in $PATH!  Please check that python3 is installed')
         }
 
-        const botScript = spawn(pythonPath, [resolveBotPath('bot.py'), path_w, path_r])
+        const botScript = spawn(pythonPath, [this.agentPath, path_w, path_r])
         botScript.stdout?.on("data", (data: Buffer) => {
             console.log("[Python3] " + data.toString('utf-8'))
         })

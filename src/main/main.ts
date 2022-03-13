@@ -13,10 +13,10 @@
  import { autoUpdater } from 'electron-updater';
  import log from 'electron-log';
  import MenuBuilder from './menu';
- import { resolveHtmlPath } from './util';
+ import { resolveBotPath, resolveHtmlPath } from './util';
  import { NlpService } from './nlp-service';
- import { BotIPC } from './bot-ipc/bot-ipc';
- import { IPCMessage, IPCMessageType } from './bot-ipc/ipc-message';
+ import { BotIPC } from './ipc/agent/agent-ipc';
+ import { IPCMessage, IPCMessageType } from './ipc/agent/ipc-message';
  
  export default class AppUpdater {
    constructor() {
@@ -26,7 +26,7 @@
    }
  }
  
- const ipc = new BotIPC()
+ const ipc = new BotIPC(resolveBotPath('__main__.py'))
  ipc.spawn()
  
  let mainWindow: BrowserWindow | null = null;

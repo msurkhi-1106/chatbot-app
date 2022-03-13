@@ -18,5 +18,5 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export function resolveBotPath(filename: string): string {
-  return `${path.resolve(__dirname, '../bot/', filename)}`
+  return `${path.resolve(__dirname, '../agent/', filename)}`
 }
