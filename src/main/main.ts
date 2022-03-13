@@ -16,6 +16,7 @@
  import { resolveHtmlPath } from './util';
  import { NlpService } from './nlp-service';
  import { BotIPC } from './bot-ipc/bot-ipc';
+ import { IPCMessage, IPCMessageType } from './bot-ipc/ipc-message';
  
  export default class AppUpdater {
    constructor() {
@@ -32,8 +33,11 @@
  let nlpService = new NlpService();
  
  ipcMain.on('nlp-query', async (event, message) => {
-   const result = await nlpService.manager.process('en', message);
-   event.reply('nlp-query', result);
+   // const result = await nlpService.manager.process('en', message);
+   // event.reply('nlp-query', result);
+   ipc.sendMessage(IPCMessageType.AGENT_QUERY, message, (response: IPCMessage) => {
+     event.reply('nlp-query', response.body)
+   })
  });
  
  if (process.env.NODE_ENV === 'production') {

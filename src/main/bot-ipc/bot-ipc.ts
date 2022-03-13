@@ -11,6 +11,7 @@ import { IPCMessage, IPCMessageType } from './ipc-message'
 export class BotIPC {
     fifoWs?: WriteStream
     fifoRs?: ReadStream
+    callbackTable: {[id: string]: (response: IPCMessage) => void | boolean} = {}
 
     constructor() {}
 
@@ -62,8 +63,6 @@ export class BotIPC {
         this.fifoWs = fs.createWriteStream(path_w)
     
         console.log("Ready to write!")
-
-        this.sendMessage(new IPCMessage(IPCMessageType.AGENT_QUERY, "helllo"))
         
         this.fifoRs.on("data", (b: Buffer) => {
             const message: IPCMessage = JSON.parse(b.toString('utf-8'))
@@ -71,14 +70,21 @@ export class BotIPC {
         })
     }
 
-    sendMessage(message: IPCMessage) {
+    sendMessage(type: IPCMessageType, body?: string, responseCallback?: (response: IPCMessage) => void | boolean) {
+        const message = new IPCMessage(type, body)
+        if(responseCallback) this.callbackTable[message.id] = responseCallback
         this.fifoWs?.write(JSON.stringify(message))
     }
 
     private processMessage(message: IPCMessage) {
-        switch(message.type) {
-            case IPCMessageType.AGENT_RESPONSE:
-                console.log(message.body!)
+        if (message.id in this.callbackTable) {
+            const resp = this.callbackTable[message.id](message)
+            if(!resp) delete this.callbackTable[message.id]
+        } else {
+            switch(message.type) {
+                case IPCMessageType.AGENT_RESPONSE:
+                    console.log(message.body!)
+            }
         }
     }
 }

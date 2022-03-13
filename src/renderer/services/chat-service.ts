@@ -11,7 +11,6 @@ export class ChatService extends Service {
     this.receiveMessageDelay(
       'Hi, I am your virtual care consultant.  How can I help you today?'
     );
-    console.log(this.app);
   }
 
   sendMessage(message: string) {
@@ -19,10 +18,7 @@ export class ChatService extends Service {
     window.electron.ipcRenderer.queryNlp(
       message,
       (event: any, message: any) => {
-        this.receiveMessageDelay(
-          message.answer ??
-            "Sorry, I don't understand your question.  Can you please rephrase it?"
-        );
+        this.receiveMessageDelay(message);
       }
     );
   }
