@@ -24,10 +24,10 @@ class IPCPipe:
             os.close(self.fifo_r)
 
     def get_message(self) -> IPCMessage:
-        return json.loads(os.read(self.fifo_r, 64000).decode('utf-8'), object_hook=lambda d: IPCMessage(**d))
+        return IPCMessage.deserialize(os.read(self.fifo_r, 64000))
 
     def send_message(self, message: IPCMessage):
-        os.write(self.fifo_w, message.toJSON().encode('utf-8'))
+        os.write(self.fifo_w, message.serialize())
 
     def poll(self, message_handler: IPCMessageHandler):
         try:

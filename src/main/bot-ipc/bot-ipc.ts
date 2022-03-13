@@ -65,7 +65,7 @@ export class BotIPC {
         console.log("Ready to write!")
         
         this.fifoRs.on("data", (b: Buffer) => {
-            const message: IPCMessage = JSON.parse(b.toString('utf-8'))
+            const message: IPCMessage = IPCMessage.deserialize(b)
             this.processMessage(message)
         })
     }
@@ -73,7 +73,7 @@ export class BotIPC {
     sendMessage(type: IPCMessageType, body?: string, responseCallback?: (response: IPCMessage) => void | boolean) {
         const message = new IPCMessage(type, body)
         if(responseCallback) this.callbackTable[message.id] = responseCallback
-        this.fifoWs?.write(JSON.stringify(message))
+        this.fifoWs?.write(message.serialize())
     }
 
     private processMessage(message: IPCMessage) {

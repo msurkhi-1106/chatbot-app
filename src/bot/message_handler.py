@@ -8,5 +8,5 @@ class MessageHandler(IPCMessageHandler):
         self.agent = agent
 
     def handle_message(self, ipc_pipe: IPCPipe, message: IPCMessage):
-        if (message.type == "agent-query"):
-            ipc_pipe.send_message(IPCMessage("agent-response", "heyyy", message.id))
+        if (message.type == 1): # AGENT_QUERY
+            ipc_pipe.send_message(IPCMessage(0, "heyyy", message.id))
