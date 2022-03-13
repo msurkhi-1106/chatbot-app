@@ -15,6 +15,7 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import { NlpService } from './nlp-service';
+import { BotIPC } from './bot-ipc';
 
 export default class AppUpdater {
   constructor() {
@@ -23,6 +24,9 @@ export default class AppUpdater {
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
+
+const ipc = new BotIPC()
+ipc.spawn()
 
 let mainWindow: BrowserWindow | null = null;
 let nlpService = new NlpService();
