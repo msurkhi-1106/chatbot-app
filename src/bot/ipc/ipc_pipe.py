@@ -1,13 +1,15 @@
+import json
 import os
 import select
+from ipc.ipc_message_handler import IPCMessageHandler
+
+from ipc.ipc_message import IPCMessage
 
 POLL_DELAY_MS = 10
 
 class IPCPipe:
     def __init__(self, pipe_name_r, pipe_name_w):
-        print("ye")
         try:
-            print('try')
             self.fifo_r = os.open(pipe_name_r, os.O_RDONLY, os.O_NONBLOCK)
             print('Read pipe ready')
             while True:
@@ -19,14 +21,15 @@ class IPCPipe:
                     print(ex)
                     pass
         except:
-
-            print("NAH")
             os.close(self.fifo_r)
 
-    def get_message(self):
-        return os.read(self.fifo_r, 1024).decode('utf-8')
+    def get_message(self) -> IPCMessage:
+        return json.loads(os.read(self.fifo_r, 64000).decode('utf-8'), object_hook=lambda d: IPCMessage(**d))
 
-    def poll(self):
+    def send_message(self, message: IPCMessage):
+        os.write(self.fifo_w, message.toJSON().encode('utf-8'))
+
+    def poll(self, message_handler: IPCMessageHandler):
         try:
             poll = select.poll()
             poll.register(self.fifo_r, select.POLLIN)
@@ -34,13 +37,8 @@ class IPCPipe:
             while True:
                 if (self.fifo_r, select.POLLIN) in poll.poll(POLL_DELAY_MS):
                     msg = self.get_message()
-                    print(msg)
-                    os.write(self.fifo_w, "Hello brooo!".encode("utf-8"))
+                    message_handler.handle_message(self, msg)
 
         finally:
             poll.unregister(self.fifo_r)
             os.close(self.fifo_r)
-
-                
-
-    

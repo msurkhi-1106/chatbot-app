@@ -1,13 +1,17 @@
-import fs from 'fs'
+import fs, { ReadStream, WriteStream } from 'fs'
 import { spawn, fork } from 'child_process'
 import { v4 as uuidv4 } from 'uuid'
-import { resolveBotPath } from './util'
+import { resolveBotPath } from '../util'
 import commandExists from 'command-exists'
 import os from 'os'
 import path from 'path'
 import './ipc-cleanup'
+import { IPCMessage, IPCMessageType } from './ipc-message'
 
 export class BotIPC {
+    fifoWs?: WriteStream
+    fifoRs?: ReadStream
+
     constructor() {}
 
     async spawnPython(path_r: string, path_w: string) {
@@ -54,15 +58,27 @@ export class BotIPC {
         this.spawnPython(path_r, path_w)
     
         const fd = fs.openSync(path_r, 'r+')
-        let fifoRs = fs.createReadStream(null!, {fd})
-        let fifoWs = fs.createWriteStream(path_w)
+        this.fifoRs = fs.createReadStream(null!, {fd})
+        this.fifoWs = fs.createWriteStream(path_w)
     
         console.log("Ready to write!")
+
+        this.sendMessage(new IPCMessage(IPCMessageType.AGENT_QUERY, "helllo"))
         
-        fifoWs.write("heyyyyyheyyyyyheyyyyyheyyyyyheyyyyyheyyyyyheyyyyyheyyyyyheyyyyyheyyyyyheyyyyyheyyyyyheyyyyyheyyyyyheyyyyy")
-        fifoRs.on("data", (b: Buffer) => {
-            const data = b.toString('utf-8')
-            console.log(data)
+        this.fifoRs.on("data", (b: Buffer) => {
+            const message: IPCMessage = JSON.parse(b.toString('utf-8'))
+            this.processMessage(message)
         })
+    }
+
+    sendMessage(message: IPCMessage) {
+        this.fifoWs?.write(JSON.stringify(message))
+    }
+
+    private processMessage(message: IPCMessage) {
+        switch(message.type) {
+            case IPCMessageType.AGENT_RESPONSE:
+                console.log(message.body!)
+        }
     }
 }

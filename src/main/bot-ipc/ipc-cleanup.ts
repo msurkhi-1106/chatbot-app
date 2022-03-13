@@ -4,9 +4,11 @@ process.stdin.resume();//so the program will not close instantly
 
 function exitHandler(options:any, exitCode:number) {
     console.log("heeyyyyy")
+    console.log(options)
     if (options.cleanup) console.log('clean');
     if (exitCode || exitCode === 0) console.log(exitCode);
     if (options.exit) process.exit();
+    process.exit()
 }
 
 //do something when app is closing
