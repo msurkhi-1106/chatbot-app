@@ -9,14 +9,13 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
  import path from 'path';
- import { app, BrowserWindow, shell, ipcMain } from 'electron';
+ import { app, BrowserWindow, shell } from 'electron';
  import { autoUpdater } from 'electron-updater';
  import log from 'electron-log';
  import MenuBuilder from './menu';
  import { resolveBotPath, resolveHtmlPath } from './util';
- import { NlpService } from './nlp-service';
- import { BotIPC } from './ipc/agent/agent-ipc';
- import { IPCMessage, IPCMessageType } from './ipc/agent/ipc-message';
+ import { AgentIPC } from './ipc/agent/agent-ipc';
+import { RendererIPC } from './ipc/renderer/renderer-ipc';
  
  export default class AppUpdater {
    constructor() {
@@ -26,19 +25,13 @@
    }
  }
  
- const ipc = new BotIPC(resolveBotPath('__main__.py'))
- ipc.spawn()
+ const agent_ipc = new AgentIPC(resolveBotPath('__main__.py'))
+ agent_ipc.spawn()
+
+ const renderer_ipc = new RendererIPC(agent_ipc)
+ renderer_ipc.init()
  
  let mainWindow: BrowserWindow | null = null;
- let nlpService = new NlpService();
- 
- ipcMain.on('nlp-query', async (event, message) => {
-   // const result = await nlpService.manager.process('en', message);
-   // event.reply('nlp-query', result);
-   ipc.sendMessage(IPCMessageType.AGENT_QUERY, message, (response: IPCMessage) => {
-     event.reply('nlp-query', response.body)
-   })
- });
  
  if (process.env.NODE_ENV === 'production') {
    const sourceMapSupport = require('source-map-support');

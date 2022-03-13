@@ -4,11 +4,11 @@ import { v4 as uuidv4 } from 'uuid'
 import commandExists from 'command-exists'
 import os from 'os'
 import path from 'path'
-import { IPCMessage, IPCMessageType } from './ipc-message'
+import { IPCMessage, IPCMessageType } from '../../../shared/ipc-message'
 
 import './ipc-cleanup'
 
-export class BotIPC {
+export class AgentIPC {
     fifoWs?: WriteStream
     fifoRs?: ReadStream
     callbackTable: {[id: string]: (response: IPCMessage) => void | boolean} = {}
@@ -68,8 +68,12 @@ export class BotIPC {
         })
     }
 
-    sendMessage(type: IPCMessageType, body?: string, responseCallback?: (response: IPCMessage) => void | boolean) {
-        const message = new IPCMessage(type, body)
+    sendMessage(type: IPCMessageType, body?: string, responseCallback?: (response: IPCMessage) => void | boolean, id?: string) {
+        const message = new IPCMessage(type, body, id)
+        this.send(message, responseCallback)
+    }
+
+    send(message: IPCMessage, responseCallback?: (response: IPCMessage) => void | boolean) {
         if(responseCallback) this.callbackTable[message.id] = responseCallback
         this.fifoWs?.write(message.serialize())
     }
