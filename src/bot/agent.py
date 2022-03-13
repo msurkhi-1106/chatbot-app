@@ -1,3 +1,3 @@
 class Agent:
-    def query() -> str:
+    def query(self, query) -> str:
         return "hello bro!"

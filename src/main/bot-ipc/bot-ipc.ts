@@ -31,7 +31,6 @@ export class BotIPC {
         }
 
         const botScript = spawn(pythonPath, [resolveBotPath('bot.py'), path_w, path_r])
-        console.log("spawned bot")
         botScript.stdout?.on("data", (data: Buffer) => {
             console.log("[Python3] " + data.toString('utf-8'))
         })
