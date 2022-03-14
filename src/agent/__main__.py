@@ -7,11 +7,9 @@ from message_handler import MessageHandler
 
 from ipc.ipc_pipe import IPCPipe
 
-path_fifo_r = sys.argv[1] #read pipe path
-path_fifo_w = sys.argv[2] #write pipe path
+socket_address = sys.argv[1]
 
 agent = Agent()
 message_handler = MessageHandler(agent)
 
-pipe = IPCPipe(path_fifo_r, path_fifo_w)
-pipe.poll(message_handler)
+pipe = IPCPipe(socket_address, message_handler)

@@ -1,6 +1,7 @@
 import json
 import os
 import select
+import websocket
 from ipc.ipc_message_handler import IPCMessageHandler
 
 from ipc.ipc_message import IPCMessage
@@ -8,37 +9,29 @@ from ipc.ipc_message import IPCMessage
 POLL_DELAY_MS = 10
 
 class IPCPipe:
-    def __init__(self, pipe_name_r, pipe_name_w):
-        try:
-            self.fifo_r = os.open(pipe_name_r, os.O_RDONLY, os.O_NONBLOCK)
-            print('Read pipe ready')
-            while True:
-                try:
-                    self.fifo_w = os.open(pipe_name_w, os.O_WRONLY)
-                    print('Write pipe ready')
-                    break
-                except Exception as ex:
-                    print(ex)
-                    pass
-        except:
-            os.close(self.fifo_r)
+    def __init__(self, address, message_handler: IPCMessageHandler):
+        self.message_handler = message_handler
+        self.ws = websocket.WebSocketApp(address,
+            on_message = (lambda ws, message: self.on_message(ws, message)),
+            on_error = (lambda ws, error: self.on_error(ws, error)),
+            on_open = (lambda ws: self.on_open(ws)),
+            on_close = (lambda ws, close_status_code, close_msg: self.on_close(ws, close_status_code, close_msg)),
+        )
 
-    def get_message(self) -> IPCMessage:
-        return IPCMessage.deserialize(os.read(self.fifo_r, 64000)) 
+        self.ws.run_forever()
 
     def send_message(self, type: int, body: str = None, id: str = None):
-        os.write(self.fifo_w, IPCMessage(type, body, id).serialize())
+        self.ws.send(IPCMessage(type, body, id).toJSON())
 
-    def poll(self, message_handler: IPCMessageHandler):
-        try:
-            poll = select.poll()
-            poll.register(self.fifo_r, select.POLLIN)
-            
-            while True:
-                if (self.fifo_r, select.POLLIN) in poll.poll(POLL_DELAY_MS):
-                    msg = self.get_message()
-                    message_handler.handle_message(self, msg)
+    def on_message(self, ws: websocket.WebSocket, message):
+        msg = json.loads(message, object_hook=lambda d: IPCMessage(**d))
+        self.message_handler.handle_message(self, msg)
 
-        finally:
-            poll.unregister(self.fifo_r)
-            os.close(self.fifo_r)
+    def on_error(self, ws: websocket.WebSocket, error):
+        print("Websocket error: ", error)
+
+    def on_close(self, ws: websocket.WebSocket, close_status_code, close_msg):
+        print("Websocket Closed")
+
+    def on_open(self, ws: websocket.WebSocket):
+        print("Websocket Opened")

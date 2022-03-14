@@ -15,24 +15,42 @@ The project consists of a chatbot built in Electron; the chatbot comes with a ge
 
 The purpose of the app is to make a simple diagnostic tool, so that the user can diagnose their possible illnesses without having to leave their home. A doctor will necessarily be a better diagnostic tool than this app, but it's meant to be functional just the same.
 
-## How to Compile and Run
+## Installation and Usage
 
-Before running the project Node.js and npm will need to be installed
+### Requirements
+- Node JS - https://nodejs.org/en/
+- NVM (optional) - https://github.com/nvm-sh/nvm
+- Python 3 - https://www.python.org/downloads/
+- Pyenv (optional) - https://github.com/pyenv/pyenv
+- Pyenv-virtualenv (optional) - https://github.com/pyenv/pyenv-virtualenv
 
-Open the project in your IDE of choice.
 Open terminal in the root of the project and run this command:
+1.  Install NPM dependencies
+    
+    ~~~bash
+    npm install
+    ~~~
+2.  Install Python dependencies
+    - OPTIONAL. Install [Pyenv](https://github.com/pyenv/pyenv) & [Pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)  to manage Python environment.  Follow instructions provided within documentation
+      
+      Create a new virutalenv in Python 3.8.10 and activate it
+      
+      ~~~bash
+      pyenv virtualenv 3.8.10 ${YOUR_VIRTUALENV_NAME}
+      pyenv activate ${YOUR_VIRTUALENV_NAME}
+      ~~~
+    - Install requirements via pip by running the following command from the root folder of the project
 
-```bash
-npm install
-```
+      ~~~bash
+      pip install -r requirements.txt
+      ~~~ 
+3.  Launch development server using the following bash command in root of project
+    
+    ~~~bash
+    npm run start
+    ~~~
 
-Wait until the installation finishes then input the command:
-
-```bash
-npm run start
-```
-
-The chatbot should launch.
+    The chatbot should launch.
 
 ## Simplified Project Structure
 . &nbsp;<br />
