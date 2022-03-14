@@ -18,6 +18,7 @@ class IPCMessage():
 
     @staticmethod
     def deserialize(data: bytes):
+        more_packets = bool(data[0] & (1 << 7))  # true if more packets exist for same message
         type = data[0] & 0b01111111
         id = data[2:2+data[1]].hex()
         if(len(data) <= 2+data[1]):
@@ -25,10 +26,10 @@ class IPCMessage():
         else:
             body = data[2+data[1]:].decode("utf-8")
         
-        return IPCMessage(type, body, id)
+        return IPCMessage(type, json.loads(body), id)
 
     def serialize(self):
         id_bytes = bytearray.fromhex(self.id)
         descriptor = [0b00000000 & self.type, len(id_bytes)]
-        return bytearray(descriptor) + id_bytes + self.body.encode("utf-8")
+        return bytearray(descriptor) + id_bytes + json.dumps(self.body).encode("utf-8")
 

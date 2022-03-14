@@ -68,12 +68,12 @@ export class AgentIPC {
         })
     }
 
-    sendMessage(type: IPCMessageType, body?: string, responseCallback?: (response: IPCMessage) => void | boolean, id?: string) {
-        const message = new IPCMessage(type, body, id)
+    sendMessage<MessageBodyType = any>(type: IPCMessageType, body?: MessageBodyType, responseCallback?: (response: IPCMessage) => void | boolean, id?: string) {
+        const message = new IPCMessage<MessageBodyType>(type, body, id)
         this.send(message, responseCallback)
     }
 
-    send(message: IPCMessage, responseCallback?: (response: IPCMessage) => void | boolean) {
+    send<MessageBodyType = any>(message: IPCMessage<MessageBodyType>, responseCallback?: (response: IPCMessage) => void | boolean) {
         if(responseCallback) this.callbackTable[message.id] = responseCallback
         this.fifoWs?.write(message.serialize())
     }
