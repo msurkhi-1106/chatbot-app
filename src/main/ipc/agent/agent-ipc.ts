@@ -5,12 +5,14 @@ import commandExists from 'command-exists'
 import os from 'os'
 import path from 'path'
 import { IPCMessage, IPCMessageType } from '../../../shared/ipc-message'
+import WebSocket from 'ws'
+import http from 'http'
+import url from 'url'
 
 import './ipc-cleanup'
 
 export class AgentIPC {
-    fifoWs?: WriteStream
-    fifoRs?: ReadStream
+    ws?: WebSocket
     callbackTable: {[id: string]: (response: IPCMessage) => void | boolean} = {}
     agentPath: string
 
@@ -18,7 +20,7 @@ export class AgentIPC {
         this.agentPath = agentPath
     }
 
-    async spawnPython(path_r: string, path_w: string) {
+    async spawnPython(address: string) {
         let pythonPath
         if(await commandExists('python3')) {
             pythonPath = 'python3'
@@ -29,7 +31,7 @@ export class AgentIPC {
             throw new Error('Python was not found in $PATH!  Please check that python3 is installed')
         }
 
-        const botScript = spawn(pythonPath, [this.agentPath, path_w, path_r])
+        const botScript = spawn(pythonPath, [this.agentPath, address])
         botScript.stdout?.on("data", (data: Buffer) => {
             console.log("[Python3] " + data.toString('utf-8'))
         })
@@ -42,29 +44,30 @@ export class AgentIPC {
         path_r = path.resolve(os.tmpdir(), path_r)
         path_w = path.resolve(os.tmpdir(), path_w)
 
-        const fifo_r = spawn('mkfifo', [path_r])
-        const fifo_w = spawn('mkfifo', [path_w])
+        const wss = new WebSocket.Server({noServer: true})
+        const server = http.createServer()
 
-        await Promise.all([fifo_r, fifo_w].map(p => new Promise<void>((resolve, reject) => {
-            p.on("exit", (code) => {
-                if(code == 0) resolve()
-                else reject()
+        wss.on('connection', (ws) => {
+            console.log("Client connected to Websocket")
+            this.ws = ws
+            ws.on("message", (data) => {
+                this.processMessage(JSON.parse(data.toString()))
             })
-        })))
+        })
 
-        console.log('Created read/write pipes')
+        server.on('upgrade', function upgrade(request, socket, head) {
+            wss.handleUpgrade(request, socket, head, function done(ws) {
+                wss.emit('connection', ws, request);
+            });
+        });
 
-        this.spawnPython(path_r, path_w)
-    
-        const fd = fs.openSync(path_r, 'r+')
-        this.fifoRs = fs.createReadStream(null!, {fd})
-        this.fifoWs = fs.createWriteStream(path_w)
-    
-        console.log("Ready to write!")
-        
-        this.fifoRs.on("data", (b: Buffer) => {
-            const message: IPCMessage = IPCMessage.deserialize(b)
-            this.processMessage(message)
+        server.listen(0, '127.0.0.1', () => {
+            const addressRaw = server.address()
+            const address: string = <string>((addressRaw instanceof String)
+                ? addressRaw
+                : `ws://${(addressRaw as any).address}:${(addressRaw as any).port}`)
+
+            this.spawnPython(address)
         })
     }
 
@@ -75,7 +78,7 @@ export class AgentIPC {
 
     send<MessageBodyType = any>(message: IPCMessage<MessageBodyType>, responseCallback?: (response: IPCMessage) => void | boolean) {
         if(responseCallback) this.callbackTable[message.id] = responseCallback
-        this.fifoWs?.write(message.serialize())
+        this.ws?.send(JSON.stringify(message))
     }
 
     private processMessage(message: IPCMessage) {
