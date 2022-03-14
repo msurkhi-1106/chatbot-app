@@ -16,6 +16,9 @@
  import { resolveBotPath, resolveHtmlPath } from './util';
  import { AgentIPC } from './ipc/agent/agent-ipc';
 import { RendererIPC } from './ipc/renderer/renderer-ipc';
+import dotenv from 'dotenv'
+
+dotenv.config()
  
  export default class AppUpdater {
    constructor() {

@@ -1,4 +1,3 @@
-import fs, { ReadStream, WriteStream } from 'fs'
 import { spawn } from 'child_process'
 import { v4 as uuidv4 } from 'uuid'
 import commandExists from 'command-exists'
@@ -7,7 +6,6 @@ import path from 'path'
 import { IPCMessage, IPCMessageType } from '../../../shared/ipc-message'
 import WebSocket from 'ws'
 import http from 'http'
-import url from 'url'
 
 import './ipc-cleanup'
 
@@ -22,7 +20,10 @@ export class AgentIPC {
 
     async spawnPython(address: string) {
         let pythonPath
-        if(await commandExists('python3')) {
+        if(process.env.PYTHON_PATH && process.env.PYTHON_PATH != "") {
+            pythonPath = process.env.PYTHON_PATH
+        } else if(await commandExists('python3')) {
+            console.log("PYTHON_PATH environment variable not provided... trying 'python3'")
             pythonPath = 'python3'
         } else if(await commandExists('python')) {
             console.log("'python3' not found in PATH... trying 'python'")
