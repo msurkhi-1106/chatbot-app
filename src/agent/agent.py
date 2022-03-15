@@ -1,5 +1,4 @@
 import nltk
-nltk.download('punkt')
 nltk.download('popular')
 from nltk.corpus import wordnet
 class Agent:
