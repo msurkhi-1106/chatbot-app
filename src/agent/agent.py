@@ -9,13 +9,9 @@ class Agent:
         #TODO Part of speach tagging --Nathan
         query = self.pos_tag(query)
         
-        query = nltk.word_tokenize(query)
-        parsedQuery = nltk.pos_tag(query)
-        
         #TODO: Named Entity Recognition: Recognize names given and append 
         #saying "hello" or "tell jessica to" or something to the front --GABE
-        entitySet = self.entity_recognition(parsedQuery)
-
+        entitySet = self.entity_recognition(query)
 
         #TODO: COReference: Figure out if the query is about the user or their patient is talking about --Jordan C
 
@@ -24,7 +20,7 @@ class Agent:
 
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
 
-        return query
+        return str(entitySet)
     
     def pos_tag(self, query):
         token = nltk.word_tokenize(query)
@@ -36,7 +32,11 @@ class Agent:
     def entity_recognition(self, query) -> str:
         named_ent = nltk.ne_chunk(query, binary=True)
         
-        ne_set = {i for i in named_ent if type(i) == nltk.tree.Tree}
+        ne_set = []
+
+        for i in namedEnt:
+            if type(i) == nltk.tree.Tree:
+                neSet.append(i)
             
         print(ne_set)
         return ne_set
