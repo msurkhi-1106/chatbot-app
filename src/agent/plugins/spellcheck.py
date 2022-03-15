@@ -10,6 +10,7 @@ class SpellCheck(AgentPlugin):
         correct_query = ""
         
         for word in wordList:
+            word = nltk.stem.porter.PorterStemmer().stem(word)
             temp = [(nltk.edit_distance(word, w),w) for w in dictionary if w[0]==word[0]]
             correct_query += sorted(temp, key = lambda val:val[0])[0][1] + " "
         
