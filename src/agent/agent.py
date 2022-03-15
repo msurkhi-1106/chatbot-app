@@ -17,7 +17,7 @@ class Agent:
         #TODO Part of speach tagging --Nathan
         #TODO: Named Entity Recognition: Recognize names given and append 
         #saying "hello" or "tell jessica to" or something to the front --GABE
-        entitySet = self.entity_recognition(query)
+        entitySet = self.entity_recognition(taggedQuery)
         #TODO: COReference: Figure out if the query is about the user or their patient is talking about --Jordan C
 
 
