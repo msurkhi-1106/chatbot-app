@@ -15,8 +15,9 @@ class Agent:
         #TODO: Spelling Check, call a function within agent to fix the query to realistic words --GABE or whoever gets to it
         taggedQuery = self.pos_tag(query)
         #TODO Part of speach tagging --Nathan
-        #TODO: Named Entity Recognition: Recognize names given and append
-        
+        #TODO: Named Entity Recognition: Recognize names given and append 
+        #saying "hello" or "tell jessica to" or something to the front --GABE
+        entitySet = self.entity_recognition(query)
         #TODO: COReference: Figure out if the query is about the user or their patient is talking about --Jordan C
 
 
@@ -31,7 +32,19 @@ class Agent:
         tagged = nltk.pos_tag(token)
         
         return tagged
-
+      
+    def entity_recognition(self, query):
+        named_ent = nltk.ne_chunk(query, binary=True)
+        
+        ne_set = []
+        for i in named_ent:
+            if type(i) == nltk.tree.Tree:
+                st = ""
+                for j in range (len(i)):
+                    st = st + " " + i[j][0]
+                ne_set.append(st.strip())
+        return ne_set
+      
     ## self.synonyms(word) returns list of synonyms for inputted word
     ## if word is more than one word, returns list of synonyms for first word only
     ## has error catching now
