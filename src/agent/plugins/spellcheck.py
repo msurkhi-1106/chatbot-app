@@ -1,18 +1,17 @@
 from plugins.agent_plugin import AgentPlugin
 import nltk
 import re
+import spellchecker
 
 class SpellCheck(AgentPlugin):
     def parse(self, query):
-        dictionary = nltk.corpus.words.words()
+        spell = spellchecker.SpellChecker(distance = 4)
         wordList = re.findall(r'\w+', query)
         
         correct_query = ""
         
         for word in wordList:
-            word = nltk.stem.porter.PorterStemmer().stem(word)
-            temp = [(nltk.edit_distance(word, w),w) for w in dictionary if w[0]==word[0]]
-            correct_query += sorted(temp, key = lambda val:val[0])[0][1] + " "
+            correct_query += spell.correction(word) + " "
         
         print(correct_query)
         
