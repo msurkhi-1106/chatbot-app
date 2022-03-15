@@ -52,6 +52,6 @@ class Agent:
             print(set(synonyms))
 
             return synonyms
-        catch:
+        except:
             print("Encountered an error; make sure you inputted a valid word to get synonyms.")
             return word
