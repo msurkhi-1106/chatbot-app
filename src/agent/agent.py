@@ -20,7 +20,7 @@ class Agent:
 
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
 
-        return str(entitySet)
+        return query
     
     def pos_tag(self, query):
         token = nltk.word_tokenize(query)
@@ -29,14 +29,14 @@ class Agent:
         return tagged
 
         
-    def entity_recognition(self, query) -> str:
+    def entity_recognition(self, query):
         named_ent = nltk.ne_chunk(query, binary=True)
         
         ne_set = []
-
-        for i in namedEnt:
+        for i in named_ent:
             if type(i) == nltk.tree.Tree:
-                neSet.append(i)
-            
-        print(ne_set)
+                st = ""
+                for j in range (len(i)):
+                    st = st + " " + i[j][0]
+                ne_set.append(st.strip())
         return ne_set
