@@ -20,7 +20,12 @@ plugins = [
     SentimentAnalysis
 ]
 
-agent = Agent(plugins)
+nltk_dependencies = [
+    'popular'
+    ,'vader_lexicon'
+]
+
+agent = Agent(plugins, nltk_dependencies)
 message_handler = MessageHandler(agent)
 
 pipe = IPCPipe(socket_address, message_handler)
