@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 from keras.models import Sequential
-from keras.layers import Dense, Embedding, GlobalAveragePooling1D
+from keras.layers import Dense, Embedding, GlobalAveragePooling1D, LSTM, Dropout
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.preprocessing import LabelEncoder
@@ -37,7 +37,7 @@ class Trainer:
         lbl_encoder.fit(training_labels)
         training_labels = lbl_encoder.transform(training_labels)
 
-        vocab_size = 1000
+        vocab_size = 50000
         embedding_dim = 16
         max_len = 20
         oov_token = "<OOV>"
@@ -48,14 +48,28 @@ class Trainer:
         sequences = tokenizer.texts_to_sequences(training_sentences)
         padded_sequences = pad_sequences(sequences, truncating='post', maxlen=max_len)
 
-        model = Sequential()
-        model.add(Embedding(vocab_size, embedding_dim, input_length=max_len))
-        model.add(GlobalAveragePooling1D())
-        model.add(Dense(16, activation='relu'))
-        model.add(Dense(16, activation='relu'))
-        model.add(Dense(num_classes, activation='softmax'))
+        embedding_vector_features=45
 
-        model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+        model=Sequential()
+
+        model.add(Embedding(vocab_size,embedding_vector_features,input_length=max_len))
+
+        model.add(LSTM(128,activation='relu',return_sequences=True))
+
+        model.add(Dropout(0.2))
+
+        model.add(LSTM(128,activation='relu'))
+
+        model.add(Dropout(0.2))
+
+        model.add(Dense(32,activation='relu'))
+
+        model.add(Dropout(0.2))
+
+        model.add(Dense(num_classes,activation='softmax'))
+
+        model.compile(loss='sparse_categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
+
 
         epochs = 550
         history = model.fit(padded_sequences, np.array(training_labels), epochs=epochs)
