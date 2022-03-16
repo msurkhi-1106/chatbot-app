@@ -3,6 +3,7 @@ import select
 import sys
 from plugins.pos_tag import PosTag
 from plugins.spellcheck import SpellCheck
+from plugins.entity_recognition import EntityRecognition
 import auto_flush
 from agent import Agent
 from message_handler import MessageHandler
@@ -13,7 +14,8 @@ socket_address = sys.argv[1]
 
 plugins = [
     SpellCheck,
-    PosTag
+    PosTag,
+    EntityRecognition
 ]
 
 agent = Agent(plugins)
