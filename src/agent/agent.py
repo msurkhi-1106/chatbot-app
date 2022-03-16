@@ -12,9 +12,13 @@ class Agent:
         self.plugins = list(map(lambda x: x(), plugins))
 
     def query(self, query) -> str:
+        print(self.plugins)
         #TODO: Spelling Check, call a function within agent to fix the query to realistic words --GABE or whoever gets to it
+        check = self.plugins[0].parse(query)
         #TODO Part of speach tagging --Nathan
-        #TODO: Named Entity Recognition: Recognize names given and append 
+        pos_tag = self.plugins[1].parse(query)
+        #TODO: Named Entity Recognition: Recognize names given and append
+        ne_rec = self.plugins[2].parse(query) 
         #saying "hello" or "tell jessica to" or something to the front --GABE
         #TODO: COReference: Figure out if the query is about the user or their patient is talking about --Jordan C
 
@@ -23,7 +27,7 @@ class Agent:
 
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
 
-        return query
+        return pos_tag
     
     def pos_tag(self, query):
         token = nltk.word_tokenize(query)
