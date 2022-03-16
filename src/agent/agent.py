@@ -24,10 +24,10 @@ class Agent:
         ne_rec = self.plugins[2].parse(pos_tag) 
         #saying "hello" or "tell jessica to" or something to the front --GABE
         #TODO: COReference: Figure out if the query is about the user or their patient is talking about --Jordan C
-
+        sentiment = self.plugins[3].parse(query)
 
         ##TODO Sentiment for easy interchangeable sentences
-        sentiment = self.sentiment_analysis(query)
+       # sentiment = self.sentiment_analysis(query)
 
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
 
@@ -38,26 +38,8 @@ class Agent:
         tagged = nltk.pos_tag(token)
         
         return tagged
-      
-    def entity_recognition(self, query):
-        named_ent = nltk.ne_chunk(query, binary=True)
-        
-        ne_set = []
-        for i in named_ent:
-            if type(i) == nltk.tree.Tree:
-                st = ""
-                for j in range (len(i)):
-                    st = st + " " + i[j][0]
-                ne_set.append(st.strip())
-        return ne_set
+   
     
-        
-    def sentiment_analysis(self, query):
-        sentiment = SentimentIntensityAnalyzer().polarity_scores(query)
-        return sentiment['compound'] #return a value between -1 and 1 indicating negativity
-
-
-        
     ## self.synonyms(word) returns list of synonyms for inputted word
     ## if word is more than one word, returns list of synonyms for first word only
     ## has error catching now
