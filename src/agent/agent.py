@@ -18,7 +18,7 @@ class Agent:
         #TODO Part of speach tagging --Nathan
         pos_tag = self.plugins[1].parse(query)
         #TODO: Named Entity Recognition: Recognize names given and append
-        ne_rec = self.plugins[2].parse(query) 
+        ne_rec = self.plugins[2].parse(pos_tag) 
         #saying "hello" or "tell jessica to" or something to the front --GABE
         #TODO: COReference: Figure out if the query is about the user or their patient is talking about --Jordan C
 
