@@ -22,14 +22,14 @@ class Agent:
         pos_tag = self.plugins[1].parse(query)
         #TODO: Named Entity Recognition: Recognize names given and append
         ne_rec = self.plugins[2].parse(pos_tag) 
-        #saying "hello" or "tell jessica to" or something to the front --GABE
-        #TODO: COReference: Figure out if the query is about the user or their patient is talking about --Jordan C
+        #sentiment analysis
         sentiment = self.plugins[3].parse(query)
 
         ##TODO Sentiment for easy interchangeable sentences
-       # sentiment = self.sentiment_analysis(query)
 
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
+
+        #seethe and cope
 
         return pos_tag
     
