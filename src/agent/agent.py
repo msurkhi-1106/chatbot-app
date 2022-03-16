@@ -6,7 +6,10 @@ import re
 
 from plugins.agent_plugin import AgentPlugin
 nltk.download('popular')
+nltk.download('vader_lexicon')
 from nltk.corpus import wordnet
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 class Agent:
     def __init__(self, plugins):
         self.plugins = list(map(lambda x: x(), plugins))
@@ -21,7 +24,8 @@ class Agent:
         #TODO: COReference: Figure out if the query is about the user or their patient is talking about --Jordan C
 
 
-        ##TODO??? Other things to cover our bases if it's easy
+        ##TODO Sentiment for easy interchangeable sentences
+        sentiment = self.sentiment_analysis(query)
 
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
 
@@ -44,7 +48,14 @@ class Agent:
                     st = st + " " + i[j][0]
                 ne_set.append(st.strip())
         return ne_set
-      
+    
+        
+    def sentiment_analysis(self, query):
+        sentiment = SentimentIntensityAnalyzer().polarity_scores(query)
+        return sentiment['compound'] #return a value between -1 and 1 indicating negativity
+
+
+        
     ## self.synonyms(word) returns list of synonyms for inputted word
     ## if word is more than one word, returns list of synonyms for first word only
     ## has error catching now
