@@ -22,31 +22,28 @@ class Trainer:
         labels = []
         responses = []
 
-
-        for i, intent in enumerate(data):
+        for i, (intent_key, intent) in enumerate(data.items()):
             for pattern in intent['patterns']:
                 training_sentences.append(pattern)
-                training_labels.append(i)
-            responses.append(intent['responses'])
+                training_labels.append(intent_key)
             
+            responses.append(intent['responses'])
             labels.append(i)
                 
-        num_classes = len(labels)
-
+        num_intents = len(labels)
         lbl_encoder = LabelEncoder()
         lbl_encoder.fit(training_labels)
         training_labels = lbl_encoder.transform(training_labels)
 
-        vocab_size = 50000
-        embedding_dim = 16
-        max_len = 20
+        vocab_size = 50000      # limit vocabulary to 50k most common words
+        max_len = 20            # maximum sequence length (words)
         oov_token = "<OOV>"
 
         tokenizer = Tokenizer(num_words=vocab_size, oov_token=oov_token) # adding out of vocabulary token
         tokenizer.fit_on_texts(training_sentences)
-        word_index = tokenizer.word_index
         sequences = tokenizer.texts_to_sequences(training_sentences)
         padded_sequences = pad_sequences(sequences, truncating='post', maxlen=max_len)
+        print(padded_sequences)
 
         embedding_vector_features=45
 
@@ -66,7 +63,7 @@ class Trainer:
 
         model.add(Dropout(0.2))
 
-        model.add(Dense(num_classes,activation='softmax'))
+        model.add(Dense(num_intents,activation='softmax'))
 
         model.compile(loss='sparse_categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
 
@@ -80,7 +77,6 @@ class Trainer:
         # saving tokenizer
         with open('tokenizer.pickle', 'wb') as handle:
             pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
-            
 
         # saving label encoder
         with open('label_encoder.pickle', 'wb') as ecn_file:

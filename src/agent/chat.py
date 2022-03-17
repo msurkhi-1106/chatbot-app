@@ -19,15 +19,21 @@ def chat(txt):
 
     # load label encoder object
     with open('label_encoder.pickle', 'rb') as enc:
-        lbl_encoder = pickle.load(enc)
+        lbl_encoder: LabelEncoder = pickle.load(enc)
 
     # parameters
     max_len = 20
 
-    result = model.predict(keras.preprocessing.sequence.pad_sequences(tokenizer.texts_to_sequences([txt]),
+    result: np.array = model.predict(keras.preprocessing.sequence.pad_sequences(tokenizer.texts_to_sequences([txt]),
                                              truncating='post', maxlen=max_len))
-    tag = int(lbl_encoder.inverse_transform([np.argmax(result)]))
+    intent_key = lbl_encoder.inverse_transform([np.argmax(result)])[0]
 
-    print(result)
-    
-    return random.choice(data[tag]["responses"])
+    # Check if phrase is not highly recognizable (similar to default)
+    label_index = lbl_encoder.transform(np.array(["default"]))
+    default_weight = result[0][label_index]
+    if(default_weight > 0.001):
+        intent_key = "default"
+
+    #print(sorted((r,i) for (_,i), r in np.ndenumerate(result)))
+
+    return random.choice(data[intent_key]["responses"])
