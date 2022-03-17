@@ -8,6 +8,10 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.preprocessing import LabelEncoder
 import pickle
+import re
+import nltk
+from nltk.corpus import wordnet
+from functools import lru_cache
 
 class Trainer:
     def __init__(self, input_file):
@@ -24,8 +28,11 @@ class Trainer:
 
         for i, (intent_key, intent) in enumerate(data.items()):
             for pattern in intent['patterns']:
-                training_sentences.append(pattern)
-                training_labels.append(intent_key)
+                print(re.findall(r"\w+", pattern))
+                synonymous_sentences = self.get_synonymous_sentences(re.findall(r"\w+", pattern))
+                for sentence in synonymous_sentences:
+                    training_sentences.append(sentence)
+                    training_labels.append(intent_key)
             
             responses.append(intent['responses'])
             labels.append(i)
@@ -81,3 +88,39 @@ class Trainer:
         # saving label encoder
         with open('label_encoder.pickle', 'wb') as ecn_file:
             pickle.dump(lbl_encoder, ecn_file, protocol=pickle.HIGHEST_PROTOCOL)
+
+    ## self.synonyms(word, pos_tag) returns list of synonyms for inputted word with the pos_tag
+    ## has error catching now
+    @lru_cache(maxsize=None)
+    def synonyms(self, word, pos_tag):
+        word = word.lower()
+        try:
+            synonyms = set()
+            synonyms.add(word)
+            valid_sets = [s for s in wordnet.synsets(word, pos = pos_tag) if s.name().startswith(word)]
+            while len(synonyms) < 3 and valid_sets:
+                syn_set = valid_sets.pop(0)
+                print(syn_set)
+                if syn_set.name().startswith(word):
+                    for l in syn_set.lemmas():
+                        name = l.name().replace("_", " ")
+                        synonyms.add(name.lower())
+            
+            print(synonyms)
+
+            return synonyms
+        except:
+            print("Encountered an error; make sure you inputted a valid word to get synonyms.")
+            return word
+
+    def get_synonymous_sentences(self, words: 'list[str]', idx: int = 0):
+        print(words)
+        if (idx == len(words)): return [" ".join(words)]
+        res = []
+        for w in self.synonyms(words[idx], None): #make sure get_synonyms includes self
+            words_new = words.copy()
+            words_new[idx] = w
+            res += self.get_synonymous_sentences(words_new, idx + 1)
+        return res 
+
+    

@@ -18,6 +18,7 @@ class Agent:
         self.plugins = list(map(lambda x: x(), plugins))
 
     def query(self, query) -> str:
+        print(set(self.synonyms("ball", "n")))
         return chat(query)
 
         print(self.plugins)
@@ -46,24 +47,23 @@ class Agent:
         return tagged
    
     
-    ## self.synonyms(word) returns list of synonyms for inputted word
-    ## if word is more than one word, returns list of synonyms for first word only
+    ## self.synonyms(word, pos_tag) returns list of synonyms for inputted word with the pos_tag
     ## has error catching now
-    def synonyms(self, word):
+    def synonyms(self, word, pos_tag):
+        word = word.lower()
         try:
-            tag = self.pos_tag(word)
-            if " " in word:
-                tag = self.pos_tag(word.split()[0])
-            synonyms = []
-            for syn_set in wordnet.synsets(word):
-                for l in syn_set.lemmas():
-                    name = l.name().replace("_", " ")
-                    testTag = self.pos_tag(name)
-                    if testTag[0][1] == tag[0][1]:
-                        name = name.lower()
-                        synonyms.append(name)
+            synonyms = set()
+            synonyms.add(word)
+            valid_sets = [s for s in wordnet.synsets(word, pos = pos_tag) if s.name().startswith(word)]
+            while len(synonyms) < 3 and valid_sets:
+                syn_set = valid_sets.pop(0)
+                print(syn_set)
+                if syn_set.name().startswith(word):
+                    for l in syn_set.lemmas():
+                        name = l.name().replace("_", " ")
+                        synonyms.add(name.lower())
             
-            print(set(synonyms))
+            print(synonyms)
 
             return synonyms
         except:
