@@ -143,3 +143,53 @@ Class members:
   - name: string (represents user name)
   - typing: boolean (represents whether user is typing, default=false)
   - photo?: string (represents user photo URL, default=undefined)
+
+
+## Features Added For A3
+
+### TensorFlow:
+
+TensorFlow wasn't listed in the toolkits, but we've included it because we believe that it will more than count as one of the "other toolkits" category named.
+It essentially works as a toolkit to implement neural networks into the program.
+TensorFlow has improved the AI's ability to recognize sentences, and has been heavily integrated into synonym recognition.
+
+We have no example conversation for TensorFlow, since it's used in training the tool that recognizes the user's input. As such, the best example for it is the 30-turn scenario.
+
+### Synonym Recognition:
+
+This improves the bot through enabling the user to input synonyms for words, rather than the exact words that the bot has initially listed in its software.
+This broadens the bot's recognition of user inputs.
+
+Example conversation: (insert picture or path to file)
+
+### POS Tagging:
+
+This isn't used directly in conversation by the bot, but it is used to increase the quality of other features, like synonym recognition.
+Essentially, this ensures that synonyms are only considered when they are of the same part of speech.
+For example: if "input" is used as a noun in a sentence, synonyms of "input" as a verb will not be included.
+
+Example conversation: (insert picture or path to file. Show conversation where user inputs a synonymous word to one we care about that could be noun or verb, and bot takes it into account correctly)
+
+### Sentiment Analysis:
+
+placeholder
+
+Example conversation: (insert picture or path to file)
+
+### Named Entity Recognition
+
+placeholder
+
+Example conversation: (insert picture or path to file)
+
+## Data Flow Diagrams
+
+filepaths
+
+## Possible API Elements
+
+1. Extract the synonyms function (found in util/trainer.py and src/agents/agent.py) to find the synonyms for a specific word, occupying a specific part of speech.
+2. Extract spellcheck.py to have a simple spellcheck function using Python's spellcheck library.
+3. Extract get_synonymous_sentences (found in src/agents.py) to get sentences that are "one synonym away" from the input sentence.
+4. Extract config/dataset.json for a basic map from symptoms to diagnoses to be used in a similar doctor-like or other healthcare-oriented program.
+5. Extract the functions to train the neural network (from util/trainer.py) based on all the synonyms for a given word.
