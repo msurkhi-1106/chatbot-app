@@ -3,22 +3,24 @@ from collections import deque
 from functools import reduce
 import nltk
 import re
-from chat import chat
+from chat import Chat
 
 from plugins.agent_plugin import AgentPlugin
 from nltk.corpus import wordnet
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 class Agent:
-    def __init__(self, plugins, nltk_dependencies):
+    def __init__(self, plugins, nltk_dependencies, dataset = "config/dataset.json", chat_model_path = "chat_model", tokenizer_path = "tokenizer.pickle", label_encoder_path = "label_encoder.pickle"):
         print("Downloading nltk dependencies")
         for dependency in nltk_dependencies:
             nltk.download(dependency)
 
         self.plugins = list(map(lambda x: x(), plugins))
+        self.dataset = dataset
+        self.chat = Chat(dataset, chat_model_path, tokenizer_path, label_encoder_path)
 
     def query(self, query) -> str:
-        return chat(query)
+        return self.chat.chat(query)
 
         print(self.plugins)
         #TODO: Spelling Check, call a function within agent to fix the query to realistic words --GABE or whoever gets to it
