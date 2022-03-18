@@ -4,6 +4,7 @@ from functools import reduce
 import nltk
 import re
 from chat import chat
+from random import randint
 
 from plugins.agent_plugin import AgentPlugin
 from nltk.corpus import wordnet
@@ -39,18 +40,19 @@ class Agent:
         base =chat(query)
 
         if(sentiment<-.5):
-            oh_nos = ["I'm sorry to hear that!",
-                      "That doesn't sound very good.'",
-                      "I'm sorry you feel this way.",
-                      "I hope I can help you feel better!",
-                      "Hold on, we'll get you feeling better in no time!",
-                      "I'll work my hardest to help you feel better."]
-            base = oh_nos[randint(len(oh_nos))] + base
+            oh_nos = ["I'm sorry to hear that! ",
+                      "That doesn't sound very good. ",
+                      "I'm sorry you feel this way. ",
+                      "I hope I can help you feel better! ",
+                      "Hold on, we'll get you feeling better in no time! ",
+                      "I'll work my hardest to help you feel better. "]
+            base = oh_nos[randint(0, len(oh_nos) ) ] + base
+
         if ne_rec:
-            if "I'm in base" in base:
+            if "I'm" in base:
                 print(ne_rec[0])
             if "they" in base:
-                print("Please tell " + ne_rec + ": \"" + base + "\"")
+                base = "Please tell " + ne_rec[0] + ": \"" + base + "\""
 
 
             
