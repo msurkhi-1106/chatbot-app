@@ -18,8 +18,7 @@ class Agent:
         self.plugins = list(map(lambda x: x(), plugins))
 
     def query(self, query) -> str:
-        print(set(self.synonyms("ball", "n")))
-        return chat(query)
+        #return chat(query)
 
         print(self.plugins)
         #TODO: Spelling Check, call a function within agent to fix the query to realistic words --GABE or whoever gets to it
@@ -37,7 +36,7 @@ class Agent:
 
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
 
-        return pos_tag
+        return chat(query)
 
     
     def pos_tag(self, query):
