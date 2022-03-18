@@ -3,18 +3,23 @@ from collections import deque
 from functools import reduce
 import nltk
 import re
+from chat import chat
 
 from plugins.agent_plugin import AgentPlugin
-nltk.download('popular')
-nltk.download('vader_lexicon')
 from nltk.corpus import wordnet
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 class Agent:
-    def __init__(self, plugins):
+    def __init__(self, plugins, nltk_dependencies):
+        print("Downloading nltk dependencies")
+        for dependency in nltk_dependencies:
+            nltk.download(dependency)
+
         self.plugins = list(map(lambda x: x(), plugins))
 
     def query(self, query) -> str:
+        return chat(query)
+
         print(self.plugins)
         #TODO: Spelling Check, call a function within agent to fix the query to realistic words --GABE or whoever gets to it
         check = self.plugins[0].parse(query)
@@ -32,6 +37,7 @@ class Agent:
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
 
         return pos_tag
+
     
     def pos_tag(self, query):
         token = nltk.word_tokenize(query)

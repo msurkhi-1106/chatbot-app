@@ -33,3 +33,5 @@ model.nlp
 __pycache__
 
 .env
+
+chat_model
