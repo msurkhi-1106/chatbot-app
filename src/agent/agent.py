@@ -11,6 +11,7 @@ from nltk.corpus import wordnet
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 class Agent:
+    lastname = False
     def __init__(self, plugins, nltk_dependencies):
         print("Downloading nltk dependencies")
         for dependency in nltk_dependencies:
@@ -55,13 +56,26 @@ class Agent:
 
             if "they" in check:
                 base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
+                self.lastname = True
                 
             if "They" in check:
                 base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
+                self.lastname = True
+            if "their" in check:
+                base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
+                self.lastname = True
+                
+            if "Their" in check:
+                base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
+                self.lastname = True
                 
             if "I'm" in check:
                 base = "Hello, " + ne_rec[0] + ". " + base
-
+        else:
+            if "They" in check:
+                base = "Tell them: \"" + base + "\""
+            if "they" in check:
+                base = "Tell them: \"" + base + "\""
 
             
 
