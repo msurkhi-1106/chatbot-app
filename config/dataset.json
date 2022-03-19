@@ -85,9 +85,10 @@
   },
   "diagnose.influenza": {
     "patterns": [
-      "nose congested and body ache",
-      "sneeze and run nose and fever",
-      "fever and body ache"
+      "runny nose, congestion, aches",
+      "nose, running, sneezing, aches",
+      "aches, cough, fever, nose",
+      "runny nose"
     ],
     "responses": [
       "You have a case of the common cold! If you would like to know how to treat the common cold, just ask."
@@ -107,10 +108,10 @@
   },
   "diagnose.pinkeye": {
     "patterns": [
-      "eye pink and crust",
-      "swollen eye and crust",
-      "eye irritated and discharge",
-      "eye crust swollen and discharge"
+      "eye, itch, swollen, crusty, pink",
+      "eye, swelling, irritated, red, crust",
+      "eye, swollen, discharge, pink",
+      "swollen, irritated, itchy, crusty"
     ],
     "responses": [
       "You have a conjunctivitis, also known as pink eye. If you would like to know how to treat pink eye, just ask."
@@ -118,8 +119,10 @@
   },
   "diagnose.stomachflu": {
     "patterns": [
-      "diarrhea and stomach pain",
-      "stomach ache and diarrhea"
+      "tummy, hurts, nausea, diarrhea, light fever",
+      "stomach, ache, nauseous, diarrhea, light fever",
+      "stomach, pain, nausea, diarrhea, light fever",
+      "nausea, diarrhea, stomach ache"
     ],
     "responses": [
       "You have the stomach flu! If you would like to know how to treat a stomach flu, just ask."
@@ -191,6 +194,16 @@
     ],
     "responses": [
       "You may have a light fever if this is your first time having a cold sore. In that case common pain relievers like Tylenol, Advil, and Ibuprofen can help relieve any pain caused by the fever. Creams with lidocaine or benzocaine can also offer some pain relief when applied to the sore."
+    ]
+  },
+  "treat.coughing": {
+    "patterns": [
+      "coughing",
+      "chronic coughing",
+      "bad, cough"
+    ],
+    "responses": [
+      "Tea and honey as well as cough drops can help relive some of the coughing. An air humidifier or a steamy shower can also help. This should be ovbious but avoid smoking anything. If the cough gets worse or persists visit your doctor."
     ]
   },
   "treat.covid": {
