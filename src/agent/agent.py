@@ -31,13 +31,14 @@ class Agent:
         #saying "hello" or "tell jessica to" or something to the front --GABE
         #TODO: COReference: Figure out if the query is about the user or their patient is talking about --Jordan C
         sentiment = self.plugins[3].parse(query)
+        
         print(ne_rec)
         print(sentiment)
         ##TODO Sentiment for easy interchangeable sentences
 
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
         
-        base =chat(query)
+        base =chat(check)
 
         if(sentiment<-.5):
             oh_nos = ["I'm sorry to hear that! ",
@@ -46,7 +47,7 @@ class Agent:
                       "I hope I can help you feel better! ",
                       "Hold on, we'll get you feeling better in no time! ",
                       "I'll work my hardest to help you feel better. "]
-            base = oh_nos[randint(0, len(oh_nos) ) ] + base
+            base = oh_nos[randint(0, len(oh_nos)-1 ) ] + base
         
         
         if len(ne_rec)>0:
@@ -64,7 +65,7 @@ class Agent:
 
             
 
-        return base +" ---" +str(sentiment) 
+        return base 
 
     
     def pos_tag(self, query):
