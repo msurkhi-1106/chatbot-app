@@ -7,30 +7,77 @@
       "Sorry, I didn't understand your question."
     ]
   },
-  "diagnose.chickenpox": {
+  "request.education": {
     "patterns": [
-      "itchy, red, rash, fever, stomach ache",
-      "itchy, red, spots, sore throat, stomach pain"
+      "go to school",
+      "get an education",
+      "get your degree",
+      "receive your PhD",
+      "school did you",
+      "you study",
+      "university did you attend",
+      "college did you attend"
     ],
     "responses": [
-      "You have a the chickenpox. If you would like to know how to treat chickenpox, just ask."
+      "I studied medicine at the Alan Turing Virtual Institute of Medicine"
     ]
   },
-  "diagnose.coldsore": {
+  "request.diagnose": {
     "patterns": [
-      "itching, burning, mouth, tingling, lips",
-      "blisters, lips, crust, light fever",
-      "sores, crust, tingling, mouth"
+      "like a diagnosis",
+      "feel terrible",
+      "feel sick",
+      "don't feel well",
+      "feel like something is wrong",
+      "have a problem",
+      "diagnosis"
     ],
     "responses": [
-      "You have cold sores! If you would like to know how to cold sores, just ask."
+      "I'll need to know your symptoms in order to diagnose you. You can ask for a new diagnosis at any time."
+    ]
+  },
+  "treat.headache": {
+    "patterns": [
+      "light headache",
+      "light head pain"
+    ],
+    "responses": [
+      "Make sure to drink water as a common cause for headaches is dehydration. Ibuprofen and Tylenol can be taken to relieve some of the pain."
+    ]
+  },
+  "treat.aches": {
+    "patterns": [
+      "general muscle pain",
+      "slight body aches",
+      "mild aches",
+      "sore muscles",
+      "aching muscles",
+      "muscle pain",
+      "muscle ache"
+    ],
+    "responses": [
+      "Ibuprofen and Tylenol can relieve general body aches and pain. Make sure to get some pre-emptive rest as this could be an early symptom of another illness."
+    ]
+  },
+  "treat.coughing": {
+    "patterns": [
+      "light cough",
+      "chronic cough",
+      "persistent cough"
+    ],
+    "responses": [
+      "Tea and honey as well as cough drops can help relive some of the coughing. An air humidifier or a steamy shower can also help. This should be ovbious but avoid smoking anything. If the cough gets worse or persists visit your doctor."
     ]
   },
   "diagnose.covid": {
     "patterns": [
-      "taste, smell, fever, cough, breath",
-      "sore throat, aches, headache, fever",
-      "breath, chest pain, fever, aches"
+      "can't taste and difficul breath",
+      "chest pain and difficult breath",
+      "hard to breath and coughing",
+      "bad cough and bad fever",
+      "hard breath and bad fever",
+      "chest hurts and body aches and bad fever",
+      "aches and difficult breath"
     ],
     "responses": [
       "You have covid! If you would like to know how to treat covid, just ask."
@@ -38,9 +85,9 @@
   },
   "diagnose.influenza": {
     "patterns": [
-      "runny nose, congestion, aches",
-      "nose, running, sneezing, aches",
-      "aches, cough, fever, nose"
+      "nose congested and body ache",
+      "sneeze and run nose and fever",
+      "fever and body ache"
     ],
     "responses": [
       "You have a case of the common cold! If you would like to know how to treat the common cold, just ask."
@@ -48,9 +95,11 @@
   },
   "diagnose.migraine": {
     "patterns": [
-      "headache, throbbing, nausea, vomit, nauseous",
-      "headache, pulsing, nausea, vomit, nauseous",
-      "head, pain, hurt, nauseous, vomit, nausea"
+      "throb headache and nausea",
+      "feel nauseous and pulse headache",
+      "severe head pain and vomit",
+      "head pain and vomit",
+      "head pain and nausea"
     ],
     "responses": [
       "You have a migraine. If you would like to know how to treat a migraine, just ask."
@@ -58,9 +107,10 @@
   },
   "diagnose.pinkeye": {
     "patterns": [
-      "eye, itch, swollen, crusty, pink",
-      "eye, swelling, irritated, red, crust",
-      "eye, swollen, discharge, pink"
+      "eye pink and crust",
+      "swollen eye and crust",
+      "eye irritated and discharge",
+      "eye crust swollen and discharge"
     ],
     "responses": [
       "You have a conjunctivitis, also known as pink eye. If you would like to know how to treat pink eye, just ask."
@@ -68,9 +118,8 @@
   },
   "diagnose.stomachflu": {
     "patterns": [
-      "tummy, hurts, nausea, diarrhea, light fever",
-      "stomach, ache, nauseous, diarrhea, light fever",
-      "stomach, pain, nausea, diarrhea, light fever"
+      "diarrhea and stomach pain",
+      "stomach ache and diarrhea"
     ],
     "responses": [
       "You have the stomach flu! If you would like to know how to treat a stomach flu, just ask."
@@ -78,57 +127,39 @@
   },
   "diagnose.strepthroat": {
     "patterns": [
-      "sore, throat, swallow, pain, fever, swollen, neck"
+      "sore throat and pain swallow",
+      "fever and sore throat and swollen neck",
+      "swollen neck and sore throat",
+      "pain swallow and fever"
     ],
     "responses": [
       "You have strep throat. If you would like to know how to treat strep throat, just ask."
     ]
   },
-  "goodbye": {
+  "diagnose.coldsore": {
     "patterns": [
-      "thank you",
-      "that's all",
-      "goodbye"
+      "blisters around mouth",
+      "crusty sores around lips",
+      "tingling sores around mouth",
+      "blisters around mouth and light fever"
     ],
     "responses": [
-      "Just doing my job. Get well soon!"
+      "You have cold sores! If you would like to know how to cold sores, just ask."
     ]
   },
-  "request.diagnose": {
+  "diagnose.chickenpox": {
     "patterns": [
-      "I'd like to get a diagnosis",
-      "terrible",
-      "well",
-      "ill",
-      "sick",
-      "something's wrong",
-      "problem"
+      "itchy spots and bad cough",
+      "bad fever and itchy red rash",
+      "itchy red spots and bad fever"
     ],
     "responses": [
-      "I'll need to know your symptoms in order to diagnose you. You can ask for a new diagnosis at any time."
-    ]
-  },
-  "request.education": {
-    "patterns": [
-      "Where did you go to school?",
-      "medical license"
-    ],
-    "responses": [
-      "I studied medicine at the Alan Turing Virtual Institute of Medicine"
-    ]
-  },
-  "treat.aches": {
-    "patterns": [
-      "aches",
-      "general pain"
-    ],
-    "responses": [
-      "Ibuprofen and Tylenol can relieve general body aches and pain. Make sure to get some pre-emptive rest as this could be an early symptom of another illness."
+      "You have a the chickenpox. If you would like to know how to treat chickenpox, just ask."
     ]
   },
   "treat.chickenpox": {
     "patterns": [
-      "What should I do when I have a the chickenpox?",
+      "What should do when have a the chickenpox?",
       "How, treat, chickenpox"
     ],
     "responses": [
@@ -137,7 +168,7 @@
   },
   "treat.chickenpox.medicine": {
     "patterns": [
-      "What medicine should I take for chickenpox",
+      "What medicine should take for chickenpox",
       "treat, medicine, chickenpox"
     ],
     "responses": [
@@ -146,7 +177,7 @@
   },
   "treat.coldsore": {
     "patterns": [
-      "What should I do when I have cold sores",
+      "What should do when have cold sores",
       "How, treat, cold sores"
     ],
     "responses": [
@@ -155,26 +186,16 @@
   },
   "treat.coldsore.medicine": {
     "patterns": [
-      "What medicine should I take for cold sores",
+      "What medicine should take for cold sores",
       "treat, medicine, cold sores"
     ],
     "responses": [
       "You may have a light fever if this is your first time having a cold sore. In that case common pain relievers like Tylenol, Advil, and Ibuprofen can help relieve any pain caused by the fever. Creams with lidocaine or benzocaine can also offer some pain relief when applied to the sore."
     ]
   },
-  "treat.coughing": {
-    "patterns": [
-      "coughing",
-      "chronic coughing",
-      "bad, cough"
-    ],
-    "responses": [
-      "Tea and honey as well as cough drops can help relive some of the coughing. An air humidifier or a steamy shower can also help. This should be ovbious but avoid smoking anything. If the cough gets worse or persists visit your doctor."
-    ]
-  },
   "treat.covid": {
     "patterns": [
-      "What should I do if I have covid?",
+      "What should do if have covid?",
       "How, treat, covid"
     ],
     "responses": [
@@ -183,24 +204,16 @@
   },
   "treat.covid.medicine": {
     "patterns": [
-      "What medicine should I take for covid",
+      "What medicine should take for covid",
       "treat, medicine, covid"
     ],
     "responses": [
       "Advil, Tylenol, and Ibuprofen can be used to relive aches and headaches caused by the fever. If you're a high risk individual visit your doctor and ask about some of the antiviral medication for covid."
     ]
   },
-  "treat.headache": {
-    "patterns": [
-      "light headache"
-    ],
-    "responses": [
-      "Make sure to drink water as a common cause for headaches is dehydration. Ibuprofen and Tylenol can be taken to relieve some of the pain."
-    ]
-  },
   "treat.influenza": {
     "patterns": [
-      "What should I do when I have a cold?",
+      "What should do when have a cold?",
       "How, treat, cold"
     ],
     "responses": [
@@ -209,7 +222,7 @@
   },
   "treat.influenza.medicine": {
     "patterns": [
-      "What medicine should I take for the cold?",
+      "What medicine should take for the cold?",
       "treat, medicine, cold"
     ],
     "responses": [
@@ -218,8 +231,8 @@
   },
   "treat.migraine": {
     "patterns": [
-      "What should I do when I have a migraine?",
-      "How should I treat a migraine?"
+      "What should do when have a migraine?",
+      "How should treat a migraine?"
     ],
     "responses": [
       "A migraine can increase sensitivity to bright lights and loud noises. Relax in a dark, quiet room and sleep if you can. Applying a hot or cold compress to the head or neck can often help relieve the pain. If you want to know what medecine can be used to treat a migraine, just ask."
@@ -227,7 +240,7 @@
   },
   "treat.migraine.medicine": {
     "patterns": [
-      "What medicine should I take for a migraine?",
+      "What medicine should take for a migraine?",
       "treat, medicine, migraine"
     ],
     "responses": [
@@ -236,10 +249,10 @@
   },
   "treat.pinkeye": {
     "patterns": [
-      "What should I do when I have pink eye?",
-      "How, treat, pink eye?",
-      "What should I do when I have conjunctivitis?",
-      "How, treat, conjunctivitis?"
+      "What should do when have pink eye?",
+      "How treat pink eye?",
+      "What should do when have conjunctivitis?",
+      "How treat conjunctivitis?"
     ],
     "responses": [
       "Pink eye can be caused by allergies, a bacterial infection, or a viral infection. If your pink eye is caused by an allergy, removing the allergen from your enviroment can relive symptoms. In the case of bacterial and viral pink eye, it's advised you see your doctor as a perscription can aid the recovery process greatly. In all cases a cold cloth can be used to clean your eye of any discharge. If you're infected in both eyes use a seperate cloth for each eye. If you want to know what medecine can be used to treat the pink eye, just ask."
@@ -247,8 +260,8 @@
   },
   "treat.pinkeye.medicine": {
     "patterns": [
-      "What medicine should I take for pink eye?",
-      "What medicine should I take for conjunctivitis?",
+      "What medicine should take for pink eye?",
+      "What medicine should take for conjunctivitis?",
       "treat, medicine, pink eye",
       "treat, medicine, conjunctivitis"
     ],
@@ -258,8 +271,8 @@
   },
   "treat.stomachflu": {
     "patterns": [
-      "What should I do when I have the stomach flu?",
-      "How should I treat a stomach flue?"
+      "What should do when have the stomach flu?",
+      "How should treat a stomach flue?"
     ],
     "responses": [
       "Try to avoid solid foods. If you're hungry try to eat easier to digest foods like bananas, toast, soup, etc. Avoid coffee, nicotine, fatty foods, and alcohol. Make sure to get plenty of rest as well. If you want to know what medecine can be used to treat a stomach flu, just ask."
@@ -267,7 +280,7 @@
   },
   "treat.stomachflu.medicine": {
     "patterns": [
-      "What medicine should I take for a stomach flu?",
+      "What medicine should take for a stomach flu?",
       "treat, medicine, stomach flue"
     ],
     "responses": [
@@ -276,7 +289,7 @@
   },
   "treat.strepthroat": {
     "patterns": [
-      "What should I do if I have strep throat?",
+      "What should do if have strep throat?",
       "How, treat, strep throat"
     ],
     "responses": [
@@ -285,11 +298,24 @@
   },
   "treat.strepthroat.medicine": {
     "patterns": [
-      "What medicine should I take for strep thraot",
+      "What medicine should take for strep thraot",
       "treat, medicine, strep throat"
     ],
     "responses": [
       "The standard pain relievers such as Advil, Tylenol, and Ibuprofen can help relive much of the pain strep throat causes. Strep throat can also be cured much quicker with the use of perscribed antibiotics such as penicillin or amoxicillin. Only consider antibiotics if your case of strep throat lasts for longer than usual or becomes worse."
+    ]
+  },
+  "goodbye": {
+    "patterns": [
+      "thank you",
+      "goodbye",
+      "thanks for your help",
+      "going to go now",
+      "going to bed",
+      "need to rest"
+    ],
+    "responses": [
+      "If you ever need help again I'm always here. Get well soon!"
     ]
   }
 }
