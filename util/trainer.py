@@ -76,7 +76,7 @@ class Trainer:
         model.compile(loss='sparse_categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
 
 
-        epochs = 225
+        epochs = 300
         history = model.fit(padded_sequences, np.array(training_labels), epochs=epochs)
 
         # saving model
