@@ -40,10 +40,10 @@
     "patterns": [
       "light headache",
       "light head pain",
-      "I have a light headache",
-      "What do I do for a light headache",
-      "What can I do for a headache",
-      "I have a headache"
+      "have light headache",
+      "What do do for light headache",
+      "What can do for headache",
+      "have headache"
     ],
     "responses": [
       "Make sure to drink water as a common cause for headaches is dehydration. Ibuprofen and Tylenol can be taken to relieve some of the pain."
@@ -59,11 +59,11 @@
       "muscle pain",
       "muscle ache",
       "How do you treat general aches",
-      "How can I help general aches",
-      "What do I do if I have general pain",
-      "What do I do if I have mild aches",
-      "I have general soreness",
-      "How do I treat general pain"
+      "How can help general aches",
+      "What do do if have general pain",
+      "What do do if have mild aches",
+      "have general soreness",
+      "How do treat general pain"
     ],
     "responses": [
       "Ibuprofen and Tylenol can relieve general body aches and pain. Make sure to get some pre-emptive rest as this could be an early symptom of another illness."
@@ -74,10 +74,11 @@
       "light cough",
       "chronic cough",
       "persistent cough",
-      "How can I help with coughing",
-      "How to treat a cough",
-      "What do I do for a cough",
-      "How to treat a light cough"
+      "How can help with coughing",
+      "How to treat cough",
+      "What do do for cough",
+      "How to treat light cough",
+      "have chronic cough"
     ],
     "responses": [
       "Tea and honey as well as cough drops can help relive some of the coughing. An air humidifier or a steamy shower can also help. This should be ovbious but avoid smoking anything. If the cough gets worse or persists visit your doctor."
@@ -92,11 +93,12 @@
       "hard breath and bad fever",
       "chest hurts and body aches and bad fever",
       "aches and difficult breath",
-      "I have a fever and have lost my smell and taste",
-      "I have a sore throat aches and a fever",
-      "I have lost my sense of taste and have a sore throat and headache",
-      "I have chest pain a fever and aches",
-      "I have a headache and fever I also am short of breath"
+      "have fever and have lost my smell and taste",
+      "have sore throat aches and fever",
+      "have lost my sense of taste and have sore throat and headache",
+      "have chest pain fever and aches",
+      "have headache and fever also am short of breath",
+      "can't taste and have difficulty breathing."
     ],
     "responses": [
       "You have covid! If you would like to know how to treat covid, just ask."
@@ -104,16 +106,16 @@
   },
   "diagnose.influenza": {
     "patterns": [
-      "runny nose, congestion, aches",
-      "nose, running, sneezing, aches",
-      "aches, cough, fever, nose",
+      "runny nose, congestion and aches",
+      "nose, running, sneezing and aches",
+      "aches, cough, fever and nose",
       "runny nose",
-      "congested and have a runny nose",
-      "I have a runny nose and am feeling congested",
-      "I have been sneezing and have a runny nose",
-      "I have a congestion and have a cough My nose has been running",
-      "I have a runny nose and a fever",
-      "I have been sneezing and have been congested"
+      "congested and have runny nose",
+      "have runny nose and am feeling congested",
+      "have been sneezing and have runny nose",
+      "have congestion and have cough My nose has been running",
+      "have runny nose and fever",
+      "have been sneezing and have been congested"
     ],
     "responses": [
       "You have a case of the common cold! If you would like to know how to treat the common cold, just ask."
@@ -125,7 +127,9 @@
       "feel nauseous and pulse headache",
       "severe head pain and vomit",
       "head pain and vomit",
-      "head pain and nausea"
+      "head pain and nausea",
+      "have throbbing headache and nausea",
+      "have severe head pain and regularly vomit"
     ],
     "responses": [
       "You have a migraine. If you would like to know how to treat a migraine, just ask."
@@ -133,10 +137,10 @@
   },
   "diagnose.pinkeye": {
     "patterns": [
-      "eye, itch, swollen, crusty, pink",
-      "eye, swelling, irritated, red, crust",
-      "eye, swollen, discharge, pink",
-      "swollen, irritated, itchy, crusty",
+      "eye, itch, swollen, crusty and pink",
+      "eye, swelling, irritated, red and crust",
+      "eye, swollen, discharge and pink",
+      "swollen, irritated, itchy and crusty",
       "My eye is itchy and swollen"
 
     ],
@@ -150,11 +154,11 @@
       "stomach, ache, nauseous, diarrhea, light fever",
       "stomach, pain, nausea, diarrhea, light fever",
       "nausea, diarrhea, stomach ache",
-      "My stomach hurts and I have a light fever",
-      "had diarrhea and ave had a stomach ache",
-      "My stomach is in pain and I ve been nauseous",
-      "My tummy hurts and I ve had a fever",
-      "Ive been nauseous and have had a stomach ache"
+      "My stomach hurts, have light fever",
+      "had diarrhea, ave had stomach ache",
+      "My stomach is in pain, ve been nauseous",
+      "My tummy hurts, had fever",
+      "Ive been nauseous, have had stomach ache"
     ],
     "responses": [
       "You have the stomach flu! If you would like to know how to treat a stomach flu, just ask."
@@ -162,13 +166,13 @@
   },
   "diagnose.strepthroat": {
     "patterns": [
-      "sore throat and pain swallow",
-      "fever and sore throat and swollen neck",
-      "swollen neck and sore throat",
-      "pain swallow and fever",
-      "I have a sore swollen throat",
+      "sore throat, pain swallow",
+      "fever, sore throat, swollen neck",
+      "swollen neck, sore throat",
+      "pain swallow, fever",
+      "have sore swollen throat",
       "It hurts to swallow",
-      "I have a fever and my neck is swollen"
+      "have fever, my neck is swollen"
     ],
     "responses": [
       "You have strep throat. If you would like to know how to treat strep throat, just ask."
@@ -179,11 +183,11 @@
       "blisters around mouth",
       "crusty sores around lips",
       "tingling sores around mouth",
-      "blisters around mouth and light fever",
-      "I have blisters on my lips",
-      "I have itchy tingly lips",
-      "I have sores around my mouth",
-      "I have a light fever and blistered crusty lips"
+      "blisters around mouth, light fever",
+      "have blisters on my lips",
+      "have itchy tingly lips",
+      "have sores around my mouth",
+      "have light fever, blistered crusty lips"
 
     ],
     "responses": [
@@ -196,11 +200,11 @@
       "bad fever and itchy red rash",
       "itchy red spots and bad fever",
       "itchy spots",
-      "I have a red rash and fever",
-      "I have a sore throat stomach ache and itchy red spots",
-      "I have a fever and red itchy rash",
-      "I have a fever and itchy rash",
-      "I have a itchy rash and sore throat"
+      "have red rash and fever",
+      "have sore throat stomach ache and itchy red spots",
+      "have fever and red itchy rash",
+      "have fever and itchy rash",
+      "have itchy rash and sore throat"
     ],
     "responses": [
       "You have a the chickenpox. If you would like to know how to treat chickenpox, just ask."
@@ -208,10 +212,10 @@
   },
   "treat.chickenpox": {
     "patterns": [
-      "What should do when have a the chickenpox",
+      "What should do when have the chickenpox",
       "How, treat, chickenpox",
-      "I have chicken pox what do I do",
-      "What do I treat chickenpox with"
+      "have chicken pox what do do",
+      "What do treat chickenpox with"
     ],
     "responses": [
       "A cool bath with a small amount of baking soda can relive itchiness. Putting calamine lotion on the raash can also relive itchiness. If you want to know what medecine can be used to treat the chickenpox, just ask."
@@ -229,7 +233,8 @@
   "treat.coldsore": {
     "patterns": [
       "What should do when have cold sores",
-      "How, treat, cold sores"
+      "How, treat, cold sores",
+      "sores"
     ],
     "responses": [
       "Use lip balm to prevent your lips from drying out. A cold compress can be used to reduce redness and remove any crusting. A warm compress can be used to relive pain. If you want to know what medecine can be used to treat cold sores, just ask."
@@ -248,7 +253,7 @@
     "patterns": [
       "What should do if have covid",
       "How, treat, covid",
-      "What can I do to treat covid"
+      "What can do to treat covid"
     ],
     "responses": [
       "Honey, cold soft foods like icecream, and warm beverages can help relive coughing. If you have shortness of breath take long slow breaths. Avoid irritants like smoke, alcohol, and acidic foods. As always drink plenty of fluids and get lots of rest. If you want to know what medicine can be used to treat covid, just ask."
@@ -257,7 +262,8 @@
   "treat.covid.medicine": {
     "patterns": [
       "What medicine should take for covid",
-      "treat, medicine, covid"
+      "treat, medicine, covid",
+      "What medicine can be used for covid"
     ],
     "responses": [
       "Advil, Tylenol, and Ibuprofen can be used to relive aches and headaches caused by the fever. If you're a high risk individual visit your doctor and ask about some of the antiviral medication for covid."
@@ -276,7 +282,7 @@
     "patterns": [
       "What medicine should take for the cold",
       "treat, medicine, cold",
-      "What medication can I use for a cold"
+      "What medication can use for a cold"
     ],
     "responses": [
       "Any cold medicine you have should work. Tylenol or Advil can be used to relieve aches if you have any. Avoid antibiotics; they don't work on a virus like the common cold. "
@@ -284,11 +290,11 @@
   },
   "treat.migraine": {
     "patterns": [
-      "What should do when have a migraine",
-      "How should treat a migraine",
-      "What can I do for a migraine",
-      "What can I do to treat a migraine",
-      "What can I do for a migraine"
+      "What should do when have migraine",
+      "How should treat migraine",
+      "What can do for migraine",
+      "What can do to treat migraine",
+      "What can do for migraine"
     ],
     "responses": [
       "A migraine can increase sensitivity to bright lights and loud noises. Relax in a dark, quiet room and sleep if you can. Applying a hot or cold compress to the head or neck can often help relieve the pain. If you want to know what medecine can be used to treat a migraine, just ask."
@@ -328,9 +334,9 @@
   "treat.stomachflu": {
     "patterns": [
       "What should do when have the stomach flu",
-      "How should treat a stomach flu",
-      "What should I do for a stomach flu",
-      "What can I do for a stomach flu"
+      "How should treat stomach flu",
+      "What should do for stomach flu",
+      "What can do for stomach flu"
     ],
     "responses": [
       "Try to avoid solid foods. If you're hungry try to eat easier to digest foods like bananas, toast, soup, etc. Avoid coffee, nicotine, fatty foods, and alcohol. Make sure to get plenty of rest as well. If you want to know what medecine can be used to treat a stomach flu, just ask."
@@ -358,7 +364,7 @@
     "patterns": [
       "What medicine should take for strep thraot",
       "treat, medicine, strep throat",
-      "I have strep throat"
+      "have strep throat"
     ],
     "responses": [
       "The standard pain relievers such as Advil, Tylenol, and Ibuprofen can help relive much of the pain strep throat causes. Strep throat can also be cured much quicker with the use of perscribed antibiotics such as penicillin or amoxicillin. Only consider antibiotics if your case of strep throat lasts for longer than usual or becomes worse."
