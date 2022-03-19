@@ -47,12 +47,19 @@ class Agent:
                       "Hold on, we'll get you feeling better in no time! ",
                       "I'll work my hardest to help you feel better. "]
             base = oh_nos[randint(0, len(oh_nos) ) ] + base
+        
+        
+        if len(ne_rec)>0:
+            check = query.split()
 
-        if ne_rec:
-            if "I'm" in base:
-                print(ne_rec[0])
-            if "they" in base:
-                base = "Please tell " + ne_rec[0] + ": \"" + base + "\""
+            if "they" in check:
+                base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
+                
+            if "They" in check:
+                base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
+                
+            if "I'm" in check:
+                base = "Hello, " + ne_rec[0] + ". " + base
 
 
             
