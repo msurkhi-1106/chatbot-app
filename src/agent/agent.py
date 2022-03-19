@@ -4,6 +4,7 @@ from functools import reduce
 import nltk
 import re
 from chat import chat
+from random import randint
 
 from plugins.agent_plugin import AgentPlugin
 from nltk.corpus import wordnet
@@ -30,13 +31,40 @@ class Agent:
         #saying "hello" or "tell jessica to" or something to the front --GABE
         #TODO: COReference: Figure out if the query is about the user or their patient is talking about --Jordan C
         sentiment = self.plugins[3].parse(query)
-
+        print(ne_rec)
+        print(sentiment)
         ##TODO Sentiment for easy interchangeable sentences
-       # sentiment = self.sentiment_analysis(query)
 
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
+        
+        base =chat(query)
 
-        return chat(query)
+        if(sentiment<-.5):
+            oh_nos = ["I'm sorry to hear that! ",
+                      "That doesn't sound very good. ",
+                      "I'm sorry you feel this way. ",
+                      "I hope I can help you feel better! ",
+                      "Hold on, we'll get you feeling better in no time! ",
+                      "I'll work my hardest to help you feel better. "]
+            base = oh_nos[randint(0, len(oh_nos) ) ] + base
+        
+        
+        if len(ne_rec)>0:
+            check = query.split()
+
+            if "they" in check:
+                base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
+                
+            if "They" in check:
+                base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
+                
+            if "I'm" in check:
+                base = "Hello, " + ne_rec[0] + ". " + base
+
+
+            
+
+        return base +" ---" +str(sentiment) 
 
     
     def pos_tag(self, query):
