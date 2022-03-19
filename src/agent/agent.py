@@ -65,7 +65,7 @@ class Agent:
 
             
 
-        return "\""+str(check).strip()+"\","+" - - - - - - - - - - -  - - - - - "+base +" ---" +str(sentiment) 
+        return base 
 
     
     def pos_tag(self, query):
