@@ -283,7 +283,7 @@ The bot occasionally fails when the input contains incorrect small words. This i
 
 Example:
 
-![Smal](/assets/examples/Short.PNG 'Small input errors')
+![Smal](/assets/examples/Short.png 'Small input errors')
 
 (The image can be found at ./assets/examples/Short.PNG if there are any issues.)
 
@@ -291,7 +291,7 @@ The bot also fails when inputs are especially long. This can drag down the bot's
 
 Example:
 
-![large](/assets/examples/Long.PNG 'Large input errors')
+![large](/assets/examples/Long.png 'Large input errors')
 
 (The image can be found at ./assets/examples/Long.PNG if there are any issues.)
 
@@ -299,11 +299,11 @@ Example:
 
 This is the entire Github tree, including all branches that were used for different features
 
-![tre5](/assets/examples/tree5.PNG 'Trees')
-![tre4](/assets/examples/tree4.PNG 'Trees')
-![tre3](/assets/examples/tree3.PNG 'Trees')
-![tre2](/assets/examples/tree2.PNG 'Trees')
-![tre1](/assets/examples/tree1.PNG 'Trees')
+![tre5](/assets/examples/tree5.png 'Trees')
+![tre4](/assets/examples/tree4.png 'Trees')
+![tre3](/assets/examples/tree3.png 'Trees')
+![tre2](/assets/examples/tree2.png 'Trees')
+![tre1](/assets/examples/tree1.png 'Trees')
 
 (The image can be found at ./assets/examples/tree.PNG if there are any issues.)
 
