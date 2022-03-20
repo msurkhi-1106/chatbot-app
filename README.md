@@ -1,5 +1,9 @@
 # 310 Project: Chatbot App
 
+## Assigment 3 note
+
+Project-Report.pdf is only up-to-date as of Assignment 2. For the required documentation for A3, please see lower in the README.
+
 ## Team 31 Members:
 
 Mohammad Al-surkhi
@@ -221,14 +225,18 @@ Spell checking isn't counted as a toolkit, but it's an important addition to the
 The addition of spell check means that if a user doesn't know how to spell a symptom or diagnosis, then as long as it's close to the actual word, the bot will understand
 
 Here's a modified bot output that demonstrates the functionality of spell checking.
-![Spelling](/assets/examples/Spell.png 'Spell Checking Example')
+![Spelling](/assets/examples/Spell.PNG 'Spell Checking Example')
+
+(The image can be found at ./assets/examples/Spell.PNG if there are any issues.)
 
 ### Synonym Recognition - NLTK:
 
 This improves the bot through enabling the user to input synonyms for words, rather than the exact words that the bot has initially listed in its software.
 This broadens the bot's recognition of user inputs.
 
-![Synonym](/assets/examples/Syn.png 'Synonym Example')
+![Synonym Recognition](/assets/examples/Syn.PNG 'Synonym Example')
+
+(The image can be found at ./assets/examples/Syn.PNG if there are any issues.)
 
 ### POS Tagging - NLTK:
 
@@ -237,33 +245,44 @@ Essentially, this ensures that synonyms are only considered when they are of the
 For example: if "input" is used as a noun in a sentence, synonyms of "input" as a verb will not be included.
 
 Here's a modified bot output that demonstrates the functionality of POS tagging.
-![POS](/assets/examples/POS.png 'POS Tagging Example')
+![POS](/assets/examples/POS.PNG 'POS Tagging Example')
+
+(The image can be found at ./assets/examples/POS.PNG if there are any issues.)
+
+
 
 ### Sentiment Analysis - NLTK:
 
 This is the first feature that is directly viewable by the user. When the user inputs a sentence that is particularly negative -- so negative that a human themself could recognize that something is wrong -- the bot will pick up on this and show some sympathy.
 This helps the conversation flow a bit more naturally and in a realistic deployment could put a distressed user more at ease, both major improvements
 
-![Sentiment](/assets/examples/SA.png 'Sentiment Example')
+![SentimentAnalysis](/assets/examples/SA.PNG 'Sentiment Example')
+
+(The image can be found at ./assets/examples/SA.PNG if there are any issues.)
 
 ### Named Entity Recognition - NLTK:
 
 This is another feature that is viewable by the user. If the user inputs a proper greeting or information about someone else, the bot recognizes this and appends its response accordingly
 This helps to make the conversation a bit more personal, and helps it sound less like a programmed entity and more like speaking to a real person
 
-![NE1](/assets/examples/NE.png 'Named Entity Recognition Example')
+![NE1](/assets/examples/NE.PNG 'Named Entity Recognition Example')
+
+(The image can be found at ./assets/examples/NE.PNG if there are any issues.)
 
 ## Data Flow Diagrams
 
 The images and their descriptions can be found at:
 chatbot-app\documentation\DFD's.pdf
 
-## GitHub Repository: https://github.com/cosc310-project/chatbot-app/tree/dev
+## Limitations
 
-Here is a picture of our complete tree. Each branch represents a feature. If you want to see for yourself, use gitk --all
+The bot occasionally fails when the inputs include small words. This is caused by autocorrect, as it's overzealous with correcting these words and causes the bot not to understand the input.
 
-![tree1](/assets/examples/tree1.png 'First half of the tree')
-![tree2](/assets/examples/tree2.png 'Second half of the tree')
+Example: (((((GABE DO THIS)))))
+
+The bot also fails when inputs are especially long. This can drag down the bot's performance, as well as raising the likelihood of giving an inaccurate response by a significant amount.
+
+Example: (((((GABE DO THIS)))))
 
 ## Possible API Elements
 
