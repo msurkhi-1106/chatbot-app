@@ -17,7 +17,7 @@ Jordan Ribbink
 Nathan Wright
 
 ## Project Repo: 
-https://github.com/cosc310-project/chatbot-app/
+https://github.com/cosc310-project/chatbot-app/tree/dev
 
 ## Project Description and Purpose
 
