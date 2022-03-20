@@ -52,7 +52,7 @@ class Agent:
         
         
         if len(ne_rec)>0:
-            check = query.split()
+            check = check.split()
 
             if "they" in check:
                 base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""

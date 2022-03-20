@@ -219,6 +219,7 @@ We have no example conversation for TensorFlow, since it's used in training the 
 Spell checking isn't counted as a toolkit, but it's an important addition to the bot so we put it here to demonstrate its integration.
 The addition of spell check means that if a user doesn't know how to spell a symptom or diagnosis, then as long as it's close to the actual word, the bot will understand
 
+Here's a modified bot output that demonstrates the functionality of spell checking.
 ![Spelling](/assets/examples/Spell.png 'Spell Checking Example')
 
 ### Synonym Recognition - NLTK:
@@ -234,7 +235,8 @@ This isn't used directly in conversation by the bot, but it is used to increase 
 Essentially, this ensures that synonyms are only considered when they are of the same part of speech.
 For example: if "input" is used as a noun in a sentence, synonyms of "input" as a verb will not be included.
 
-There is no example picture, as it primarily contributes to the other added features.
+Here's a modified bot output that demonstrates the functionality of POS tagging.
+![POS](/assets/examples/POS.png 'POS Tagging Example')
 
 ### Sentiment Analysis - NLTK:
 
@@ -248,8 +250,7 @@ This helps the conversation flow a bit more naturally and in a realistic deploym
 This is another feature that is viewable by the user. If the user inputs a proper greeting or information about someone else, the bot recognizes this and appends its response accordingly
 This helps to make the conversation a bit more personal, and helps it sound less like a programmed entity and more like speaking to a real person
 
-![NE1](/assets/examples/NE_1.png 'First Person Named Entity Example')
-![NE2](/assets/examples/NE_2.png 'Other Person Named Entity Example')
+![NE1](/assets/examples/NE.png 'Named Entity Recognition Example')
 
 ## Data Flow Diagrams
 
