@@ -23,7 +23,7 @@ export default {
     computed: {
         statusClass() {
             return {
-                color: 'blue'
+                color: 'green'
             }
         }
     },
