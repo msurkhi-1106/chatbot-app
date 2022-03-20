@@ -299,9 +299,11 @@ Example:
 
 This is the entire Github tree, including all branches that were used for different features
 
-![NE1](/assets/examples/tree1.PNG 'Large input errors')
-![NE1](/assets/examples/tree2.PNG 'Large input errors')
+![NE1](/assets/examples/tree5.PNG 'Large input errors')
+![NE1](/assets/examples/tree4.PNG 'Large input errors')
 ![NE1](/assets/examples/tree3.PNG 'Large input errors')
+![NE1](/assets/examples/tree2.PNG 'Large input errors')
+![NE1](/assets/examples/tree1.PNG 'Large input errors')
 
 (The image can be found at ./assets/examples/tree.PNG if there are any issues.)
 
