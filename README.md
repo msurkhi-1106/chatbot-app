@@ -183,14 +183,14 @@ We have no example conversation for TensorFlow, since it's used in training the 
 Spell checking isn't counted as a toolkit, but it's an important addition to the bot so we put it here to demonstrate its integration.
 The addition of spell check means that if a user doesn't know how to spell a symptom or diagnosis, then as long as it's close to the actual word, the bot will understand
 
-![MarineGEO circle logo](/assets/img/MarineGEO_logo.png 'Spell Checking Example')
+![Spelling](/assets/examples/Spell.png 'Spell Checking Example')
 
 ### Synonym Recognition - NLTK:
 
 This improves the bot through enabling the user to input synonyms for words, rather than the exact words that the bot has initially listed in its software.
 This broadens the bot's recognition of user inputs.
 
-![MarineGEO circle logo](/assets/img/MarineGEO_logo.png 'Synonym Example')
+![Synonym](/assets/examples/Syn.png 'Synonym Example')
 
 ### POS Tagging - NLTK:
 
@@ -198,27 +198,34 @@ This isn't used directly in conversation by the bot, but it is used to increase 
 Essentially, this ensures that synonyms are only considered when they are of the same part of speech.
 For example: if "input" is used as a noun in a sentence, synonyms of "input" as a verb will not be included.
 
-![MarineGEO circle logo](/assets/img/MarineGEO_logo.png 'POS Tagging Example')
+There is no example picture, as it primarily contributes to the other added features.
 
 ### Sentiment Analysis - NLTK:
 
 This is the first feature that is directly viewable by the user. When the user inputs a sentence that is particularly negative -- so negative that a human themself could recognize that something is wrong -- the bot will pick up on this and show some sympathy.
 This helps the conversation flow a bit more naturally and in a realistic deployment could put a distressed user more at ease, both major improvements
 
-![MarineGEO circle logo](/assets/img/MarineGEO_logo.png 'Sentiment Example')
+![Sentiment](/assets/examples/SA.png 'Sentiment Example')
 
 ### Named Entity Recognition - NLTK:
 
 This is another feature that is viewable by the user. If the user inputs a proper greeting or information about someone else, the bot recognizes this and appends its response accordingly
 This helps to make the conversation a bit more personal, and helps it sound less like a programmed entity and more like speaking to a real person
 
-![MarineGEO circle logo](/assets/examples/NE_1.png 'First Person Named Entity Example')
-![MarineGEO circle logo](/assets/examples/NE_2.png 'Other Person Named Entity Example')
+![NE1](/assets/examples/NE_1.png 'First Person Named Entity Example')
+![NE2](/assets/examples/NE_2.png 'Other Person Named Entity Example')
 
 ## Data Flow Diagrams
 
 The images and their descriptions can be found at:
 chatbot-app\documentation\DFD's.pdf
+
+## GitHub Repository: https://github.com/cosc310-project/chatbot-app/tree/dev
+
+Here is a picture of our complete tree. Each branch represents a feature. If you want to see for yourself, use gitk --all
+
+![tree1](/assets/examples/tree1.png 'First half of the tree')
+![tree2](/assets/examples/tree2.png 'Second half of the tree')
 
 ## Possible API Elements
 
