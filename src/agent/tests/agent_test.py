@@ -19,7 +19,7 @@ def synonym_test():
     assert agent.query("What medicine should I take for a migraine?") == agent.query("What medication should I take for a migraine?")
 
 def sentiment_test():
-    query = agent.query("")
+    query = agent.query("Hey doctor, I feel sick")
     valid = query.startswith("I'm sorry to hear that!")
     valid = valid or query.startswith("That doesn't sound very good.")
     valid = valid or query.startswith("I'm sorry you feel this way.")
