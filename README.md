@@ -18,6 +18,7 @@ The purpose of the app is to make a simple diagnostic tool, so that the user can
 ## Installation and Usage
 
 ### Requirements
+
 - Node JS - https://nodejs.org/en/
 - NVM (optional) - https://github.com/nvm-sh/nvm
 - Python 3 - https://www.python.org/downloads/
@@ -25,34 +26,40 @@ The purpose of the app is to make a simple diagnostic tool, so that the user can
 - Pyenv-virtualenv (optional) - https://github.com/pyenv/pyenv-virtualenv
 
 Open terminal in the root of the project and run this command:
+
 1.  Install NPM dependencies
-    
-    ~~~bash
+
+    ```bash
     npm install
-    ~~~
+    ```
+
 2.  Install Python dependencies
-    - OPTIONAL. Install [Pyenv](https://github.com/pyenv/pyenv) & [Pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)  to manage Python environment.  Follow instructions provided within documentation
-      
+
+    - OPTIONAL. Install [Pyenv](https://github.com/pyenv/pyenv) & [Pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) to manage Python environment. Follow instructions provided within documentation
+
       Create a new virutalenv in Python 3.8.10 and activate it
-      
-      ~~~bash
+
+      ```bash
       pyenv virtualenv 3.8.10 ${YOUR_VIRTUALENV_NAME}
       pyenv activate ${YOUR_VIRTUALENV_NAME}
-      ~~~
+      ```
+
     - Install requirements via pip by running the following command from the root folder of the project
 
-      ~~~bash
+      ```bash
       pip install -r requirements.txt
-      ~~~ 
+      ```
+
 3.  Launch development server using the following bash command in root of project
-    
-    ~~~bash
+
+    ```bash
     npm run start
-    ~~~
+    ```
 
     The chatbot should launch.
 
 ## Simplified Project Structure
+
 . &nbsp;<br />
 ├── ...&nbsp;<br />
 ├── config &nbsp;<br />
@@ -92,58 +99,74 @@ Open terminal in the root of the project and run this command:
 │ &nbsp; │ &nbsp; &nbsp; &nbsp; └── inject-context.ts &nbsp;&nbsp;&nbsp;<- &nbsp;Helper function for injecting key into Vue/components (for DI)<br />
 │ &nbsp; └── ... &nbsp;<br />
 
-**NOTE:** Not all files are included.  Configuration files and similar files of low relevance (added clutter) are removed.
+**NOTE:** Not all files are included. Configuration files and similar files of low relevance (added clutter) are removed.
 
 ## Vue Components (pseudo classes)
+
 ### ChatMessage.vue &lt;ChatMessage&gt;
+
 Props (arguments):
- - message -> Message (represents message object containing content/date/sender)
+
+- message -> Message (represents message object containing content/date/sender)
 
 ### TypingMessage.vue &lt;TypingMessage&gt;
+
 Props (arguments):
- - user -> User  (represents user typing)
+
+- user -> User (represents user typing)
 
 ### ChatBar.vue &lt;ChatBar&gt;
+
 Props (arguments): N/A
 
 ### ChatBox.vue &lt;ChatBox&gt;
+
 Props (arguments): N/A
 
 ### ChatHeader.vue &lt;ChatHeader&gt;
+
 Props (arguments):
- - name -> String  (represents name of user in header)
+
+- name -> String (represents name of user in header)
 
 ### ChatContainer.vue &lt;ChatContainer&gt;
+
 Props (arguments): N/A
 
+**NOTE:** Prop typings are denoted by [propName] -> [type]. They correspond with native TypeScript types OR typings found in our src/models folder. HTML selectors (class names) are indicated by "[file].vue &lt;[selector]&gt;"
 
-**NOTE:** Prop typings are denoted by [propName] -> [type].  They correspond with native TypeScript types OR typings found in our src/models folder.  HTML selectors (class names) are indicated by "[file].vue &lt;[selector]&gt;"
+**NOTE**: While vue components are phyiscally represented as classes in code/memory and generally function like so, I don't necessarily know if it is the correct nomenclature. However , based upon the requirements, we can call them this.
 
-**NOTE**: While vue components are phyiscally represented as classes in code/memory and generally function like so, I don't necessarily know if it is the correct nomenclature.  However , based upon the requirements, we can call them this.
+Vue technically abides by the MVC (Model-View-Controller structure) where the View is connected two-way data bindding to the Controller (i.e. JS in Vue component). Models are represented as classes in our "src/models" folder
 
-Vue technically abides by the MVC (Model-View-Controller structure) where the View is connected two-way data bindding to the Controller (i.e. JS in Vue component).  Models are represented as classes in our "src/models" folder
 ## Models
+
 ├── models &nbsp;&nbsp;&nbsp;<- &nbsp;Stores reusable object models (i.e. classes/data structures)<br />
 │ &nbsp; ├── message.ts &nbsp;&nbsp;&nbsp;<- &nbsp;Class to identify a sent message<br />
 │ &nbsp; ├── service.ts &nbsp;&nbsp;&nbsp;<- &nbsp;Abstract class representing stateful services injected into Vue<br />
 │ &nbsp; └── user.ts &nbsp;&nbsp;<-Class to identify users in chat<br />
 
 ### Message.ts (Message)
-Class members:
-  - date: Date (message date sent)
-  - sender: User (message sender object)
-  - message: string (message body)
 
-### Service.ts (*abstract*&nbsp; Service)
 Class members:
-  - protected app: Vue.App (pointer to Vue App instance)
+
+- date: Date (message date sent)
+- sender: User (message sender object)
+- message: string (message body)
+
+### Service.ts (_abstract_&nbsp; Service)
+
+Class members:
+
+- protected app: Vue.App (pointer to Vue App instance)
 
 ### User.ts (User)
-Class members:
-  - name: string (represents user name)
-  - typing: boolean (represents whether user is typing, default=false)
-  - photo?: string (represents user photo URL, default=undefined)
 
+Class members:
+
+- name: string (represents user name)
+- typing: boolean (represents whether user is typing, default=false)
+- photo?: string (represents user photo URL, default=undefined)
 
 ## Features Added For A3
 
@@ -155,38 +178,51 @@ TensorFlow has improved the AI's ability to recognize sentences, and has been he
 
 We have no example conversation for TensorFlow, since it's used in training the tool that recognizes the user's input. As such, the best example for it is the 30-turn scenario.
 
-### Synonym Recognition:
+### Spell Checking (Toolkit: Pyspellchecker):
+
+Spell checking isn't counted as a toolkit, but it's an important addition to the bot so we put it here to demonstrate its integration.
+The addition of spell check means that if a user doesn't know how to spell a symptom or diagnosis, then as long as it's close to the actual word, the bot will understand
+
+![MarineGEO circle logo](/assets/img/MarineGEO_logo.png 'Spell Checking Example')
+
+### Synonym Recognition - NLTK:
 
 This improves the bot through enabling the user to input synonyms for words, rather than the exact words that the bot has initially listed in its software.
 This broadens the bot's recognition of user inputs.
 
-Example conversation: (insert picture or path to file)
+![MarineGEO circle logo](/assets/img/MarineGEO_logo.png 'Synonym Example')
 
-### POS Tagging:
+### POS Tagging - NLTK:
 
 This isn't used directly in conversation by the bot, but it is used to increase the quality of other features, like synonym recognition.
 Essentially, this ensures that synonyms are only considered when they are of the same part of speech.
 For example: if "input" is used as a noun in a sentence, synonyms of "input" as a verb will not be included.
 
-Example conversation: (insert picture or path to file. Show conversation where user inputs a synonymous word to one we care about that could be noun or verb, and bot takes it into account correctly)
+![MarineGEO circle logo](/assets/img/MarineGEO_logo.png 'POS Tagging Example')
 
-### Sentiment Analysis:
+### Sentiment Analysis - NLTK:
 
-placeholder
+This is the first feature that is directly viewable by the user. When the user inputs a sentence that is particularly negative -- so negative that a human themself could recognize that something is wrong -- the bot will pick up on this and show some sympathy.
+This helps the conversation flow a bit more naturally and in a realistic deployment could put a distressed user more at ease, both major improvements
 
-Example conversation: (insert picture or path to file)
+![MarineGEO circle logo](/assets/img/MarineGEO_logo.png 'Sentiment Example')
 
-### Named Entity Recognition
+### Named Entity Recognition - NLTK:
 
-placeholder
+This is another feature that is viewable by the user. If the user inputs a proper greeting or information about someone else, the bot recognizes this and appends its response accordingly
+This helps to make the conversation a bit more personal, and helps it sound less like a programmed entity and more like speaking to a real person
 
-Example conversation: (insert picture or path to file)
+![MarineGEO circle logo](/assets/examples/NE_1.png 'First Person Named Entity Example')
+![MarineGEO circle logo](/assets/examples/NE_2.png 'Other Person Named Entity Example')
 
 ## Data Flow Diagrams
 
+The images and their descriptions can be found at:
 chatbot-app\documentation\DFD's.pdf
 
 ## Possible API Elements
+
+With a bot as complex as ours, there are a number of different functionalities that could be exposed or used to create our own API
 
 1. Extract the synonyms function (found in util/trainer.py and src/agents/agent.py) to find the synonyms for a specific word, occupying a specific part of speech.
 2. Extract spellcheck.py to have a simple spellcheck function using Python's spellcheck library.
