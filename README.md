@@ -7,10 +7,17 @@ Project-Report.pdf is only up-to-date as of Assignment 2. For the required docum
 ## Team 31 Members:
 
 Mohammad Al-surkhi
+
 Jordan Colledge
+
 Gabriel McLachlan
+
 Jordan Ribbink
+
 Nathan Wright
+
+## Project Repo: 
+https://github.com/cosc310-project/chatbot-app/
 
 ## Project Description and Purpose
 
@@ -57,7 +64,7 @@ Open terminal in the root of the project and run this command:
 3.  Run this command to train the bot's neural network:
 
     ```bash
-    npm train
+    npm run train
     ```
 
     If this gives an error, run this instead:
@@ -299,13 +306,13 @@ Example:
 
 This is the entire Github tree, including all branches that were used for different features
 
-![tre5](/assets/examples/tree5.png 'Trees')
-![tre4](/assets/examples/tree4.png 'Trees')
-![tre3](/assets/examples/tree3.png 'Trees')
-![tre2](/assets/examples/tree2.png 'Trees')
-![tre1](/assets/examples/tree1.png 'Trees')
+![tre5](/assets/examples/Tree5.PNG 'Trees')
+![tre4](/assets/examples/Tree4.PNG 'Trees')
+![tre3](/assets/examples/Tree3.PNG 'Trees')
+![tre2](/assets/examples/tree2.PNG 'Trees')
+![tre1](/assets/examples/Tree1.PNG 'Trees')
 
-(The image can be found at ./assets/examples/tree.PNG if there are any issues.)
+(The images can be found at ./assets/examples/tree.PNG if there are any issues. Alternatively, in the terminal use "gitk --all")
 
 ## Possible API Elements
 
