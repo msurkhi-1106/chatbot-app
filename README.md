@@ -2,7 +2,7 @@
 
 ## Assigment 3 note
 
-Project-Report.pdf is only up-to-date as of Assignment 2. For the required documentation, see either the Word doc
+Project-Report.pdf is only up-to-date as of Assignment 2. For the required documentation, see either the Word doc you came from, or further down in this Readme, under the "Assignment 3 Project Report" section especially.
 
 ## Team 31 Members:
 
