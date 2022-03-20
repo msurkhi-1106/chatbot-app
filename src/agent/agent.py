@@ -3,7 +3,7 @@ from collections import deque
 from functools import reduce
 import nltk
 import re
-from chat import chat
+from chat import Chat
 from random import randint
 
 from plugins.agent_plugin import AgentPlugin
