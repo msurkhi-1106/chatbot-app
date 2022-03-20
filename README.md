@@ -2,7 +2,7 @@
 
 ## Assigment 3 note
 
-Project-Report.pdf is only up-to-date as of Assignment 2. For the required documentation for A3, please see lower in the README.
+Project-Report.pdf is only up-to-date as of Assignment 2. For the required documentation, see either the Word doc
 
 ## Team 31 Members:
 
@@ -209,7 +209,13 @@ Class members:
 - typing: boolean (represents whether user is typing, default=false)
 - photo?: string (represents user photo URL, default=undefined)
 
-## Features Added For A3
+# Assignment 3 Project Report
+
+## 30-Turn Feasible Dialogue:
+
+The PDF was consistently corrupted on upload. It can be found under ./documentation/30-Turn_Convo in six parts.
+
+## Features Added:
 
 ### TensorFlow:
 
