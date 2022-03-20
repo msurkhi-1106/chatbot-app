@@ -3,24 +3,24 @@ from collections import deque
 from functools import reduce
 import nltk
 import re
-from chat import Chat
+from chat import chat
+from random import randint
 
 from plugins.agent_plugin import AgentPlugin
 from nltk.corpus import wordnet
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 class Agent:
-    def __init__(self, plugins, nltk_dependencies, dataset = "config/dataset.json", chat_model_path = "chat_model", tokenizer_path = "tokenizer.pickle", label_encoder_path = "label_encoder.pickle"):
+    lastname = False
+    def __init__(self, plugins, nltk_dependencies):
         print("Downloading nltk dependencies")
         for dependency in nltk_dependencies:
             nltk.download(dependency)
 
         self.plugins = list(map(lambda x: x(), plugins))
-        self.dataset = dataset
-        self.chat = Chat(dataset, chat_model_path, tokenizer_path, label_encoder_path)
 
     def query(self, query) -> str:
-        return self.chat.chat(query)
+        #return chat(query)
 
         print(self.plugins)
         #TODO: Spelling Check, call a function within agent to fix the query to realistic words --GABE or whoever gets to it
@@ -32,13 +32,54 @@ class Agent:
         #saying "hello" or "tell jessica to" or something to the front --GABE
         #TODO: COReference: Figure out if the query is about the user or their patient is talking about --Jordan C
         sentiment = self.plugins[3].parse(query)
-
+        
+        print(ne_rec)
+        print(sentiment)
         ##TODO Sentiment for easy interchangeable sentences
-       # sentiment = self.sentiment_analysis(query)
 
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
+        
+        base =chat(check)
 
-        return pos_tag
+        if(sentiment<-.5):
+            oh_nos = ["I'm sorry to hear that! ",
+                      "That doesn't sound very good. ",
+                      "I'm sorry you feel this way. ",
+                      "I hope I can help you feel better! ",
+                      "Hold on, we'll get you feeling better in no time! ",
+                      "I'll work my hardest to help you feel better. "]
+            base = oh_nos[randint(0, len(oh_nos)-1 ) ] + base
+        
+        
+        if len(ne_rec)>0:
+            check = query.split()
+
+            if "they" in check:
+                base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
+                self.lastname = True
+                
+            if "They" in check:
+                base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
+                self.lastname = True
+            if "their" in check:
+                base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
+                self.lastname = True
+                
+            if "Their" in check:
+                base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
+                self.lastname = True
+                
+            if "I'm" in check:
+                base = "Hello, " + ne_rec[0] + ". " + base
+        else:
+            if "They" in check:
+                base = "Tell them: \"" + base + "\""
+            if "they" in check:
+                base = "Tell them: \"" + base + "\""
+
+            
+
+        return base 
 
     
     def pos_tag(self, query):
@@ -48,24 +89,23 @@ class Agent:
         return tagged
    
     
-    ## self.synonyms(word) returns list of synonyms for inputted word
-    ## if word is more than one word, returns list of synonyms for first word only
+    ## self.synonyms(word, pos_tag) returns list of synonyms for inputted word with the pos_tag
     ## has error catching now
-    def synonyms(self, word):
+    def synonyms(self, word, pos_tag):
+        word = word.lower()
         try:
-            tag = self.pos_tag(word)
-            if " " in word:
-                tag = self.pos_tag(word.split()[0])
-            synonyms = []
-            for syn_set in wordnet.synsets(word):
-                for l in syn_set.lemmas():
-                    name = l.name().replace("_", " ")
-                    testTag = self.pos_tag(name)
-                    if testTag[0][1] == tag[0][1]:
-                        name = name.lower()
-                        synonyms.append(name)
+            synonyms = set()
+            synonyms.add(word)
+            valid_sets = [s for s in wordnet.synsets(word, pos = pos_tag) if s.name().startswith(word)]
+            while len(synonyms) < 3 and valid_sets:
+                syn_set = valid_sets.pop(0)
+                print(syn_set)
+                if syn_set.name().startswith(word):
+                    for l in syn_set.lemmas():
+                        name = l.name().replace("_", " ")
+                        synonyms.add(name.lower())
             
-            print(set(synonyms))
+            print(synonyms)
 
             return synonyms
         except:
