@@ -50,7 +50,19 @@ Open terminal in the root of the project and run this command:
       pip install -r requirements.txt
       ```
 
-3.  Launch development server using the following bash command in root of project
+3. Run this command to train the bot's neural network:
+    ```bash
+    npm train
+    ```
+
+    If this gives an error, run this instead:
+    ```bash
+    python util/train.py
+    ```
+
+    This may take a bit of time, but after it's run once, it doesn't need to be run again.
+
+4.  Launch development server using the following bash command in root of project
 
     ```bash
     npm run start
@@ -60,12 +72,29 @@ Open terminal in the root of the project and run this command:
 
 ## Simplified Project Structure
 
+NEW TO A3:
+./documentation
+./src/agent
+./util
+
+Some files for A3 are not included for this list, as they're simply used by utilities such as TensorFlow or NLTK, or may be obsolete.
+
+
 . &nbsp;<br />
 ├── ...&nbsp;<br />
 ├── config &nbsp;<br />
 │ &nbsp; └── dataset.json &nbsp; -> Stores our dataset for NLP<br />
+├── documentation &nbsp;<br />
+│ &nbsp; ├── DFD's.pdf &nbsp; -> Stores the Data Flow Diagrams and descriptions of them. <br />
+│ &nbsp; └── Unit Test Descriptions.pdf &nbsp; -> Stores descriptions of the unit tests used.
 ├── Project Report.docx &nbsp; -> Our project report document<br />
 ├── src &nbsp;<br />
+│ &nbsp; ├── agent &nbsp;<br />
+│ &nbsp; │ &nbsp; ├── plugins &nbsp; <br />
+│ &nbsp; │ &nbsp; ├── tests &nbsp;<br />
+│ &nbsp; │ &nbsp; │ &nbsp; └── agent_test.py &nbsp; -> Unit tests as used by Pytest.
+│ &nbsp; │ &nbsp; └── agent.py &nbsp; -> The Python agent. Essentially used to read a query, manipulate it, and return the results.<br />
+│ &nbsp; │ &nbsp; └── chat.py &nbsp; -> The Python agent. Essentially used to read a query, manipulate it, and return the results.<br />
 │ &nbsp; ├── main &nbsp;<br />
 │ &nbsp; │ &nbsp; ├── nlp-service.ts &nbsp;&nbsp;&nbsp;&nbsp;<- &nbsp;Interfaces with Node NLP module and trains from dataset &nbsp;<br />
 │ &nbsp; │ &nbsp; ├── main.ts &nbsp;&nbsp;&nbsp;<- &nbsp;Electron entry point, also includes IPC module for communicating frontend<br />
@@ -98,8 +127,15 @@ Open terminal in the root of the project and run this command:
 │ &nbsp; │ &nbsp; &nbsp; &nbsp; ├── createApp.ts &nbsp;&nbsp;&nbsp;<- &nbsp;Factory to create Vue app with desired configuration<br />
 │ &nbsp; │ &nbsp; &nbsp; &nbsp; └── inject-context.ts &nbsp;&nbsp;&nbsp;<- &nbsp;Helper function for injecting key into Vue/components (for DI)<br />
 │ &nbsp; └── ... &nbsp;<br />
+├── util &nbsp; <br />
+│ &nbsp; ├── train.py &nbsp; -> A script used to train TensorFlow. <br />
+│ &nbsp; └── trainer.py &nbsp; -> Utility for configuration used in train.py. <br />
 
 **NOTE:** Not all files are included. Configuration files and similar files of low relevance (added clutter) are removed.
+
+**NOTE:** Summary of Python files is very simplified.
+
+
 
 ## Vue Components (pseudo classes)
 

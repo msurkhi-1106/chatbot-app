@@ -39,7 +39,7 @@ class Agent:
 
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
         
-        base =chat(check)
+        base = Chat(check)
 
         if(sentiment<-.5):
             oh_nos = ["I'm sorry to hear that! ",
