@@ -50,7 +50,19 @@ Open terminal in the root of the project and run this command:
       pip install -r requirements.txt
       ```
 
-3.  Launch development server using the following bash command in root of project
+3. Run this command to train the bot's neural network:
+    ```bash
+    npm train
+    ```
+
+    If this gives an error, run this instead:
+    ```bash
+    python util/train.py
+    ```
+
+    This may take a bit of time, but after it's run once, it doesn't need to be run again.
+
+4.  Launch development server using the following bash command in root of project
 
     ```bash
     npm run start
@@ -60,12 +72,30 @@ Open terminal in the root of the project and run this command:
 
 ## Simplified Project Structure
 
+NEW TO A3:
+./documentation
+./src/agent
+./util
+
+Some files for A3 are not included for this list, as they're simply used by utilities such as TensorFlow or NLTK, or may be obsolete.
+
+
 . &nbsp;<br />
 ├── ...&nbsp;<br />
 ├── config &nbsp;<br />
 │ &nbsp; └── dataset.json &nbsp; -> Stores our dataset for NLP<br />
+├── documentation &nbsp;<br />
+│ &nbsp; ├── 30-Turn Convo.pdf &nbsp; -> Stores images of the thirty-turn conversation as stipulated in requirements. <br />
+│ &nbsp; ├── DFD's.pdf &nbsp; -> Stores the Data Flow Diagrams and descriptions of them. <br />
+│ &nbsp; └── Unit Test Descriptions.pdf &nbsp; -> Stores descriptions of the unit tests used.
 ├── Project Report.docx &nbsp; -> Our project report document<br />
 ├── src &nbsp;<br />
+│ &nbsp; ├── agent &nbsp;<br />
+│ &nbsp; │ &nbsp; ├── plugins &nbsp; <br />
+│ &nbsp; │ &nbsp; ├── tests &nbsp;<br />
+│ &nbsp; │ &nbsp; │ &nbsp; └── agent_test.py &nbsp; -> Unit tests as used by Pytest.
+│ &nbsp; │ &nbsp; └── agent.py &nbsp; -> The Python agent. Essentially used to read a query, manipulate it, and return the results.<br />
+│ &nbsp; │ &nbsp; └── chat.py &nbsp; -> The Python agent. Essentially used to read a query, manipulate it, and return the results.<br />
 │ &nbsp; ├── main &nbsp;<br />
 │ &nbsp; │ &nbsp; ├── nlp-service.ts &nbsp;&nbsp;&nbsp;&nbsp;<- &nbsp;Interfaces with Node NLP module and trains from dataset &nbsp;<br />
 │ &nbsp; │ &nbsp; ├── main.ts &nbsp;&nbsp;&nbsp;<- &nbsp;Electron entry point, also includes IPC module for communicating frontend<br />
@@ -98,8 +128,15 @@ Open terminal in the root of the project and run this command:
 │ &nbsp; │ &nbsp; &nbsp; &nbsp; ├── createApp.ts &nbsp;&nbsp;&nbsp;<- &nbsp;Factory to create Vue app with desired configuration<br />
 │ &nbsp; │ &nbsp; &nbsp; &nbsp; └── inject-context.ts &nbsp;&nbsp;&nbsp;<- &nbsp;Helper function for injecting key into Vue/components (for DI)<br />
 │ &nbsp; └── ... &nbsp;<br />
+├── util &nbsp; <br />
+│ &nbsp; ├── train.py &nbsp; -> A script used to train TensorFlow. <br />
+│ &nbsp; └── trainer.py &nbsp; -> Utility for configuration used in train.py. <br />
 
 **NOTE:** Not all files are included. Configuration files and similar files of low relevance (added clutter) are removed.
+
+**NOTE:** Summary of Python files is very simplified.
+
+
 
 ## Vue Components (pseudo classes)
 
@@ -183,6 +220,7 @@ We have no example conversation for TensorFlow, since it's used in training the 
 Spell checking isn't counted as a toolkit, but it's an important addition to the bot so we put it here to demonstrate its integration.
 The addition of spell check means that if a user doesn't know how to spell a symptom or diagnosis, then as long as it's close to the actual word, the bot will understand
 
+Here's a modified bot output that demonstrates the functionality of spell checking.
 ![Spelling](/assets/examples/Spell.png 'Spell Checking Example')
 
 ### Synonym Recognition - NLTK:
@@ -198,7 +236,8 @@ This isn't used directly in conversation by the bot, but it is used to increase 
 Essentially, this ensures that synonyms are only considered when they are of the same part of speech.
 For example: if "input" is used as a noun in a sentence, synonyms of "input" as a verb will not be included.
 
-There is no example picture, as it primarily contributes to the other added features.
+Here's a modified bot output that demonstrates the functionality of POS tagging.
+![POS](/assets/examples/POS.png 'POS Tagging Example')
 
 ### Sentiment Analysis - NLTK:
 
@@ -212,8 +251,7 @@ This helps the conversation flow a bit more naturally and in a realistic deploym
 This is another feature that is viewable by the user. If the user inputs a proper greeting or information about someone else, the bot recognizes this and appends its response accordingly
 This helps to make the conversation a bit more personal, and helps it sound less like a programmed entity and more like speaking to a real person
 
-![NE1](/assets/examples/NE_1.png 'First Person Named Entity Example')
-![NE2](/assets/examples/NE_2.png 'Other Person Named Entity Example')
+![NE1](/assets/examples/NE.png 'Named Entity Recognition Example')
 
 ## Data Flow Diagrams
 
@@ -229,7 +267,7 @@ Here is a picture of our complete tree. Each branch represents a feature. If you
 
 ## Possible API Elements
 
-With a bot as complex as ours, there are a number of different functionalities that could be exposed or used to create our own API
+With a bot as complex as ours, there are a number of different functionalities that could be exposed or used to create our own API.
 
 1. Extract the synonyms function (found in util/trainer.py and src/agents/agent.py) to find the synonyms for a specific word, occupying a specific part of speech.
 2. Extract spellcheck.py to have a simple spellcheck function using Python's spellcheck library.
