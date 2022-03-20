@@ -3,7 +3,7 @@ from collections import deque
 from functools import reduce
 import nltk
 import re
-from chat import Chat
+from chat import chat
 from random import randint
 
 from plugins.agent_plugin import AgentPlugin
@@ -39,7 +39,7 @@ class Agent:
 
         ####TODODODO: Add all of the sections, and return Dr phils smart answer to the query all 3
         
-        base = Chat(check)
+        base =chat(check)
 
         if(sentiment<-.5):
             oh_nos = ["I'm sorry to hear that! ",
@@ -52,7 +52,7 @@ class Agent:
         
         
         if len(ne_rec)>0:
-            check = check.split()
+            check = query.split()
 
             if "they" in check:
                 base = "Please tell " + ne_rec[len(ne_rec)-1] + ": \"" + base + "\""
