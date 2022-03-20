@@ -54,12 +54,14 @@ Open terminal in the root of the project and run this command:
       pip install -r requirements.txt
       ```
 
-3. Run this command to train the bot's neural network:
+3.  Run this command to train the bot's neural network:
+
     ```bash
     npm train
     ```
 
     If this gives an error, run this instead:
+
     ```bash
     python util/train.py
     ```
@@ -82,7 +84,6 @@ NEW TO A3:
 ./util
 
 Some files for A3 are not included for this list, as they're simply used by utilities such as TensorFlow or NLTK, or may be obsolete.
-
 
 . &nbsp;<br />
 ├── ...&nbsp;<br />
@@ -139,8 +140,6 @@ Some files for A3 are not included for this list, as they're simply used by util
 **NOTE:** Not all files are included. Configuration files and similar files of low relevance (added clutter) are removed.
 
 **NOTE:** Summary of Python files is very simplified.
-
-
 
 ## Vue Components (pseudo classes)
 
@@ -255,8 +254,6 @@ Here's a modified bot output that demonstrates the functionality of POS tagging.
 
 (The image can be found at ./assets/examples/POS.PNG if there are any issues.)
 
-
-
 ### Sentiment Analysis - NLTK:
 
 This is the first feature that is directly viewable by the user. When the user inputs a sentence that is particularly negative -- so negative that a human themself could recognize that something is wrong -- the bot will pick up on this and show some sympathy.
@@ -282,13 +279,31 @@ chatbot-app\documentation\DFD's.pdf
 
 ## Limitations
 
-The bot occasionally fails when the inputs include small words. This is caused by autocorrect, as it's overzealous with correcting these words and causes the bot not to understand the input.
+The bot occasionally fails when the input contains incorrect small words. This is caused by spellcheck, as the number of short words that they could possibly correct to causes the bot not to understand the input properly.
 
-Example: (((((GABE DO THIS)))))
+Example:
+
+![NE1](/assets/examples/Short.PNG 'Small input errors')
+
+(The image can be found at ./assets/examples/Short.PNG if there are any issues.)
 
 The bot also fails when inputs are especially long. This can drag down the bot's performance, as well as raising the likelihood of giving an inaccurate response by a significant amount.
 
-Example: (((((GABE DO THIS)))))
+Example:
+
+![NE1](/assets/examples/Long.PNG 'Large input errors')
+
+(The image can be found at ./assets/examples/Long.PNG if there are any issues.)
+
+# Github Graph:
+
+This is the entire Github tree, including all branches that were used for different features
+
+![NE1](/assets/examples/tree1.PNG 'Large input errors')
+![NE1](/assets/examples/tree2.PNG 'Large input errors')
+![NE1](/assets/examples/tree3.PNG 'Large input errors')
+
+(The image can be found at ./assets/examples/tree.PNG if there are any issues.)
 
 ## Possible API Elements
 
