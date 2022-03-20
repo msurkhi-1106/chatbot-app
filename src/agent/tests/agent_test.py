@@ -15,11 +15,18 @@ agent = Agent(
     label_encoder_path = "../../label_encoder.pickle"
 )
 
-def test_case_one():
-    assert agent.query("What medicine should I take for a migraine?") == "If you have a migraine try taking a Tylenol or Advil. It should relive your headache. If your migraine persists for extended periods of time and after taking medicine, see a doctor."
+def synonym_test():
+    assert agent.query("What medicine should I take for a migraine?") == agent.query("What medication should I take for a migraine?")
 
-def test_case_two():
-    assert agent.query("treat, medicine, migraine") == "If you have a migraine try taking a Tylenol or Advil. It should relive your headache. If your migraine persists for extended periods of time and after taking medicine, see a doctor."
+def sentiment_test():
+    query = agent.query("")
+    valid = query.startswith("I'm sorry to hear that!")
+    valid = valid or query.startswith("That doesn't sound very good.")
+    valid = valid or query.startswith("I'm sorry you feel this way.")
+    valid = valid or query.startswith("I hope I can help you feel better!")
+    valid = valid or query.startswith("Hold on, we'll get you feeling better in no time!")
+    valid = valid or query.startswith("I'll work my hardest to help you feel better.")
+    assert valid
 
-def test_case_three():
-    assert agent.query("What should I do when I have the stomach flu?") == "Try to avoid solid foods. If you're hungry try to eat easier to digest foods like bananas, toast, soup, etc. Avoid coffee, nicotine, fatty foods, and alcohol. Make sure to get plenty of rest as well. If you want to know what medecine can be used to treat a stomach flu, just ask."
+def spellcheck_test():
+    assert agent.query("What medacine should I take for a migraine?") == agent.query("What medicine should I take for a migraine?")
