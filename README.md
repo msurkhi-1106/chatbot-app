@@ -85,6 +85,7 @@ Some files for A3 are not included for this list, as they're simply used by util
 ├── config &nbsp;<br />
 │ &nbsp; └── dataset.json &nbsp; -> Stores our dataset for NLP<br />
 ├── documentation &nbsp;<br />
+│ &nbsp; ├── 30-Turn Convo.pdf &nbsp; -> Stores images of the thirty-turn conversation as stipulated in requirements. <br />
 │ &nbsp; ├── DFD's.pdf &nbsp; -> Stores the Data Flow Diagrams and descriptions of them. <br />
 │ &nbsp; └── Unit Test Descriptions.pdf &nbsp; -> Stores descriptions of the unit tests used.
 ├── Project Report.docx &nbsp; -> Our project report document<br />
@@ -266,7 +267,7 @@ Here is a picture of our complete tree. Each branch represents a feature. If you
 
 ## Possible API Elements
 
-With a bot as complex as ours, there are a number of different functionalities that could be exposed or used to create our own API
+With a bot as complex as ours, there are a number of different functionalities that could be exposed or used to create our own API.
 
 1. Extract the synonyms function (found in util/trainer.py and src/agents/agent.py) to find the synonyms for a specific word, occupying a specific part of speech.
 2. Extract spellcheck.py to have a simple spellcheck function using Python's spellcheck library.
