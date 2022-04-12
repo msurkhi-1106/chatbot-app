@@ -1,17 +1,21 @@
 from ast import parse
 from collections import deque
 from functools import reduce
+from tabnanny import check
 import nltk
 import re
 from chat import chat
 from random import randint
-
+from googletrans import Translator
 from plugins.agent_plugin import AgentPlugin
 from nltk.corpus import wordnet
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import wikipedia 
 
 class Agent:
     lastname = False
+    wiki=""
+    
     def __init__(self, plugins, nltk_dependencies):
         print("Downloading nltk dependencies")
         for dependency in nltk_dependencies:
@@ -50,6 +54,27 @@ class Agent:
                       "I'll work my hardest to help you feel better. "]
             base = oh_nos[randint(0, len(oh_nos)-1 ) ] + base
         
+        if(query.lower().startswith("search arabic wiki ")):
+                wikipedia.set_lang("ar")
+                qlen = 18
+                if len(self.wiki) > qlen :
+                    self.wiki = check[0: qlen:]
+                wikipedia.set_lang("ar")
+                result = wikipedia.search(self.wiki, results=5)
+                self.wiki = ""
+                return result
+        if(query.lower().startswith("search english wiki ")):
+                wikipedia.set_lang("en")
+                self.wiki = query[19:] 
+                result = wikipedia.search(self.wiki, results=5)
+                self.wiki = ""
+                return result
+
+        if(query.lower().startswith("translate ")):
+               translator = Translator()
+               translations =  translator.translate(self.wiki, dest='ar')
+               self.wiki = ""
+               return translations.txt        
         
         if len(ne_rec)>0:
             check = query.split()
@@ -80,8 +105,7 @@ class Agent:
             
 
         return base 
-
-    
+   
     def pos_tag(self, query):
         token = nltk.word_tokenize(query)
         tagged = nltk.pos_tag(token)
@@ -111,3 +135,6 @@ class Agent:
         except:
             print("Encountered an error; make sure you inputted a valid word to get synonyms.")
             return word
+        
+        
+        
