@@ -73,8 +73,7 @@ class Agent:
         if(query.lower().startswith("translate ")):
                translator = Translator()
                translations =  translator.translate(self.wiki, dest='ar')
-               self.wiki = ""
-               return translations.txt        
+               return translations.text        
         
         if len(ne_rec)>0:
             check = query.split()
