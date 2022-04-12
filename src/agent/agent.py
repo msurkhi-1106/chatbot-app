@@ -56,10 +56,7 @@ class Agent:
         
         if(query.lower().startswith("search arabic wiki ")):
                 wikipedia.set_lang("ar")
-                qlen = 18
-                if len(self.wiki) > qlen :
-                    self.wiki = check[0: qlen:]
-                wikipedia.set_lang("ar")
+                self.wiki = query[18:] 
                 result = wikipedia.search(self.wiki, results=5)
                 self.wiki = ""
                 return result
@@ -71,6 +68,7 @@ class Agent:
                 return result
 
         if(query.lower().startswith("translate ")):
+               self.wiki = query[9:] 
                translator = Translator()
                translations =  translator.translate(self.wiki, dest='ar')
                return translations.text        
