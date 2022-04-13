@@ -4,7 +4,13 @@
 Individual assigment 
 
 ## APIs Implemented
-## Wikipedia API;
+### Wikipedia API 
+I use the Wikipedia API to get access to wiki features like information from all over the web. The user has to type "search lang( arabic or english) wiki about their medical issues and the bot will bring back a list of the things asked for from Wikipedia. 
+
+### Google Translate API
+
+I implemennted a google trans API that translates anything the user types to arabic. I chose arabic because it's my native tounge. The user has to type translate ... 
+and the bot will delete the first word and translate whatever is left.
 
 
 
