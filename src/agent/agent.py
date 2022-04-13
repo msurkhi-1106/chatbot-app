@@ -15,6 +15,7 @@ import wikipedia
 class Agent:
     lastname = False
     wiki=""
+    gtans=""
     
     def __init__(self, plugins, nltk_dependencies):
         print("Downloading nltk dependencies")
@@ -68,9 +69,9 @@ class Agent:
                 return result
 
         if(query.lower().startswith("translate ")):
-               self.wiki = query[9:] 
+               self.gtrans = query[9:] 
                translator = Translator()
-               translations =  translator.translate(self.wiki, dest='ar')
+               translations =  translator.translate(self.gtrans, dest='ar')
                return translations.text        
         
         if len(ne_rec)>0:

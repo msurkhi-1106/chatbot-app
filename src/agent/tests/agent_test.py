@@ -31,4 +31,3 @@ def sentiment_test():
 def spellcheck_test():
     assert agent.query("What medacine should I take for a migraine?") == agent.query("What medicine should I take for a migraine?")
     
-#q
